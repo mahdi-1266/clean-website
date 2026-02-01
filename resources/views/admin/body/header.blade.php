@@ -236,7 +236,7 @@
                   <div class="dropdown-menu dropdown-menu-end">
                     <div class="d-flex align-items-center p-3 border-bottom">
                       <div class="me-3">
-                        <img src="assets/images/user.png" alt="Softism UI Kit" class="img-4x rounded-5">
+                        <img src="{{ asset('backend/assets/images/user.png') }}" alt="Softism UI Kit" class="img-4x rounded-5">
                       </div>
                       <div>
                         <div class="fw-semibold">Sienna Brooks</div>
@@ -246,8 +246,8 @@
                     </div>
                     <div class="d-grid gap-2 p-3">
                       <div class="header-action-links d-flex gap-2 mb-2">
-                        <a class="action-link rounded-2 p-2 custom-shadow" href="settings.html">
-                          <i class="ri-settings-3-line"></i>Settings
+                        <a class="action-link rounded-2 p-2 custom-shadow" href="{{ route('admin.profile') }}">
+                          <i class="ri-user-3-line"></i>Profile
                         </a>
                         <a class="action-link rounded-2 p-2 custom-shadow" href="crm.html">
                           <i class="ri-pie-chart-line"></i>CRM

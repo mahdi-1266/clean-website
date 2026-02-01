@@ -26,5 +26,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
   Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
 });
 
+Route::middleware('auth')->group(function () {
+  Route::get('/admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
+});
+
 
 Route::controller(BackendController::class)->group(function(){});
