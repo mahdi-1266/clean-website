@@ -1,0 +1,20 @@
+var options = {
+  chart: {
+    width: 360,
+    type: "donut",
+  },
+  labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
+  series: [20, 20, 20, 20, 20],
+  legend: {
+    position: "bottom",
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  stroke: {
+    width: 0,
+  },
+  colors: ["#edae49", "#d1495b", "#00798c", "#30638e", "#003d5b"],
+};
+var chart = new ApexCharts(document.querySelector("#donut"), options);
+chart.render();
