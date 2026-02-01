@@ -2,7 +2,7 @@
   <div class="container-xl">
     <div class="row align-items-center">
       <!-- Left Info -->
-      <div class="col-lg-7">
+      <div class="col-lg-5">
         <ul class="topbar-info d-flex align-items-center gap-2 mb-0 list-unstyled">
           <li class="d-flex align-items-center gap-2">
             <i class="fa-solid fa-location-dot primary-text"></i>
@@ -19,15 +19,22 @@
       <!-- Right Info -->
       <div class="col-lg-5">
         <div class="topbar-actions d-flex align-items-center justify-content-end gap-2">
-          <div class="d-flex align-items-center gap-2">
-            <i class="fa-solid fa-phone primary-text"></i>
-            <a href="tel:javascript:void(0)" class="white-text">+1 123 456 7890</a>
-          </div>
+            <div class="d-flex align-items-center gap-2">
+               <i class="fa-solid fa-phone primary-text"></i>
+               <a href="tel:javascript:void(0)" class="white-text">+1 123 456 7890</a>
+            </div>
 
-          <div class="d-flex align-items-center gap-2">
-            <i class="fa-solid fa-clock primary-text"></i>
-            <span class="white-text">Mon – Sat : 08:00 AM – 09:00 PM</span>
-          </div>
+            <div class="d-flex align-items-center gap-2">
+               <i class="fa-solid fa-clock primary-text"></i>
+               <span class="white-text">Mon – Sat : 08:00 AM – 09:00 PM</span>
+            </div>
+        </div>
+      </div>
+
+      <div class="col-lg-2 p-0 ms-3 header-btn-container">
+        <div class="w-100 h-100 d-flex justify-content-between align-items-center">
+          <a href="{{ route('login') }}" class="btn text-white mb-3 mb-lg-0 ms-2">Login</a>
+          <a href="{{ route('register') }}" class="btn text-white mb-3 mb-lg-0">Register</a>
         </div>
       </div>
     </div>
@@ -39,8 +46,8 @@
      <!-- Brand Logo -->
     <a class="navbar-brand d-flex align-items-center" href="index-2.html">
       <div class="logo-box d-flex align-items-center justify-content-center">
-        <img src="assets/logo/logo-light.png" class="logo logo-light img-fluid" alt="Cleanysphere Light Logo" width="150">
-        <img src="assets/logo/logo-dark.png" class="logo logo-dark img-fluid" alt="Cleanysphere Dark Logo" width="150">
+        <img src="{{ asset('frontend/assets/logo/logo-light.png') }}" class="logo logo-light img-fluid" alt="Cleanysphere Light Logo" width="150">
+        <img src="{{ asset('frontend/assets/logo/logo-dark.png') }}" class="logo logo-dark img-fluid" alt="Cleanysphere Dark Logo" width="150">
       </div>
     </a>
 
@@ -53,8 +60,8 @@
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
           <div class="offcanvas-header">
               <a class="navbar-brand" href="index-2.html">
-                <img src="assets/logo/logo-light.png" class="logo logo-light img-fluid" alt="Cleanysphere Light Logo" width="150">
-                <img src="assets/logo/logo-dark.png" class="logo logo-dark img-fluid" alt="Cleanysphere Dark Logo" width="150">
+                <img src="{{ asset('frontend/assets/logo/logo-light.png') }}" class="logo logo-light img-fluid" alt="Cleanysphere Light Logo" width="150">
+                <img src="{{ asset('frontend/assets/logo/logo-dark.png') }}" class="logo logo-dark img-fluid" alt="Cleanysphere Dark Logo" width="150">
               </a>
               <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">
                   <i class="fa-solid fa-xmark"></i>
@@ -208,7 +215,7 @@
                           <!-- Column 4 : Promo Banner -->
                           <div class="col-lg-3 d-none d-lg-block">
                             <div class="mega-banner">
-                              <img src="assets/banner_img/bg-1.webp" alt="Premium Template">
+                              <img src="{{ asset('frontend/assets/banner_img/bg-1.webp') }}" alt="Premium Template">
                               <div class="mega-banner-content">
                                 <p class="fs-6 mb-3 fw-bold m-0">Professional Cleaning Services</p>
                                 <p class="fs-6 m-0">Spotless • Reliable • Eco-Friendly</p>
@@ -225,8 +232,6 @@
 
               <!-- CTA Button -->
               <a href="booking-appointment.html" class="btn primary-btn text-uppercase mb-3 mb-lg-0 me-2">Book Service</a>
-              <a href="{{ route('login') }}" class="btn primary-btn text-uppercase mb-3 mb-lg-0 me-2">Login</a>
-              <a href="{{ route('register') }}" class="btn primary-btn text-uppercase mb-3 mb-lg-0 me-2">Register</a>
 
           </div>
       </div>

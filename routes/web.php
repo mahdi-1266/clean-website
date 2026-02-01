@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\backend\BackendController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -21,7 +22,9 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/admin/logout', [BackendController::class, 'AdminLogout'])->name('admin.logout');
+  Route::get('/admin/logout', [AdminController::class, 'AdminLogout'])->name('admin.logout');
 });
+
+
+Route::controller(BackendController::class)->group(function(){});
