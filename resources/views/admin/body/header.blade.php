@@ -233,15 +233,20 @@
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="icon-box md bg-primary rounded-2">SB</div>
                   </a>
+
+                  @php
+                    $id = Auth::user()->id;
+                    $userData = App\Models\User::find($id);
+                  @endphp
+
                   <div class="dropdown-menu dropdown-menu-end">
                     <div class="d-flex align-items-center p-3 border-bottom">
                       <div class="me-3">
-                        <img src="{{ asset('backend/assets/images/user.png') }}" alt="Softism UI Kit" class="img-4x rounded-5">
+                        <img src="{{ !empty($userData->photo) ? url('upload/user_images/'.$userData->photo) : url('upload/no_image.jpg')}}" alt="Softism UI Kit" class="img-4x rounded-5">
                       </div>
                       <div>
-                        <div class="fw-semibold">Sienna Brooks</div>
-                        <div class="small text-muted">sienna@email.com</div>
-                        <div class="small text-success">Credits: 5480/1000</div>
+                        <div class="fw-semibold">{{ $userData->name }}</div>
+                        <div class="small text-muted">{{ $userData->email }}</div>
                       </div>
                     </div>
                     <div class="d-grid gap-2 p-3">

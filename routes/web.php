@@ -28,6 +28,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 Route::middleware('auth')->group(function () {
   Route::get('/admin/profile', [AdminController::class, 'AdminProfile'])->name('admin.profile');
+  Route::post('/profile/store', [AdminController::class, 'StoreProfile'])->name('profile.store');
+  Route::post('/admin/password/update', [AdminController::class, 'AdminUpdatePassword'])->name('admin.password.update');
 });
 
 
