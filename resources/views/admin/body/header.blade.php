@@ -24,7 +24,7 @@
             <!-- Breadcrumb start -->
             <ol class="breadcrumb d-none d-lg-flex ms-3">
               <li class="breadcrumb-item">
-                <a href="index-2.html" class="text-decoration-none lh-1"><i class="ri-home-7-line"></i></a>
+                <a href="{{ route('dashboard') }}" class="text-decoration-none lh-1"><i class="ri-home-7-line"></i></a>
               </li>
               <li class="breadcrumb-item text-secondary">Analytics</li>
             </ol>

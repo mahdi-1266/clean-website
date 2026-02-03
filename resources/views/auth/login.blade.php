@@ -30,6 +30,7 @@
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset('backend/assets/css/main.min.css')}}" />
 
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
   </head>
 
   <body class="login-bg">
@@ -53,16 +54,23 @@
 
             <div class="mb-3">
               <label class="form-label" for="email">Your email <span class="text-danger">*</span></label>
-              <input type="text" id="email" type="email" name="email" class="form-control" placeholder="Enter your email">
+              <input type="text" id="email" type="email" name="email" class="form-control @error('email')
+              @enderror" placeholder="Enter your email">
+
+              @error('email')
+              <span class="text-danger w-100">{{ $message }}</span>
+              @enderror
             </div>
 
             <div class="mb-2">
               <label class="form-label" for="pwd">Your password <span class="text-danger">*</span></label>
               <div class="input-group">
-                <input type="password" id="password" name="password" class="form-control" placeholder="Enter password">
-                <button class="btn btn-outline-dark" type="button">
-                  <i class="ri-eye-off-line"></i>
-                </button>
+                <input type="password" id="password" name="password" class="form-control @error('password') is-invalid
+                @enderror" placeholder="Enter password">
+
+                @error('password')
+                  <span class="text-danger w-100">{{ $message }}</span>
+                @enderror
               </div>
             </div>
 
@@ -85,6 +93,31 @@
 
     </div>
     <!-- Container ends -->
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <script>
+      @if(Session::has('message'))
+      var type = "{{ Session::get('alert-type','info') }}"
+      switch(type){
+        case 'info':
+        toastr.info(" {{ Session::get('message') }} ");
+        break;
+
+        case 'success':
+        toastr.success(" {{ Session::get('message') }} ");
+        break;
+
+        case 'warning':
+        toastr.warning(" {{ Session::get('message') }} ");
+        break;
+
+        case 'error':
+        toastr.error(" {{ Session::get('message') }} ");
+        break;
+      }
+      @endif
+    </script>
 
   </body>
 <!-- Mirrored from bootstrapget.com/demos/soft-admin-template/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 31 Jan 2026 06:47:12 GMT -->

@@ -105,6 +105,7 @@
                     {{-- Col Start --}}
                     <div class="col-xxl-9 col-sm-6">
                       <form action="{{ route('admin.password.update') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="border rounded-2 p-3 mb-3">
 
                           <div class="w-100 d-block mb-4 border-bottom pb-2 px-3">
@@ -117,15 +118,15 @@
 
                               <div class="input-group">
                                 <input type="password" id="current_password" placeholder="Enter Current password"
-                                class="form-control @error('current_password') is-invalid @enderror" name="current_password">
+                                class="form-control position-relative @error('current_password') is-invalid @enderror" name="current_password">
 
                                 @error('current_password')
-                                  <span class="text-danger">{{ $message }}</span>
+                                  <span class="text-danger w-100">{{ $message }}</span>
                                 @enderror
 
-                                <button class="btn btn-outline-dark" type="button">
+                                {{-- <button class="btn btn-outline-dark bg-success position-absolute end-0" type="button">
                                   <i class="ri-eye-off-line text-black"></i>
-                                </button>
+                                </button> --}}
                               </div>
                             </div>
 
@@ -138,12 +139,12 @@
                                 placeholder="Your password must be 8-20 characters long.">
 
                                 @error('new_password')
-                                  <span class="text-danger">{{ $message }}</span>
+                                  <span class="text-danger w-100">{{ $message }}</span>
                                 @enderror
 
-                                <button class="btn btn-outline-dark" type="button">
+                                {{-- <button class="btn btn-outline-dark" type="button">
                                   <i class="ri-eye-line text-black"></i>
-                                </button>
+                                </button> --}}
                               </div>
                             </div>
 
@@ -152,23 +153,23 @@
                               class="text-danger">*</span></label>
 
                               <div class="input-group">
-                                <input type="password" name="confirm_new_password" id="confirm_new_password" placeholder="Confirm new password"
-                                class="form-control @error('confirm_new_password') is-invalid @enderror">
+                                <input type="password" name="new_password_confirmation" id="new_password_confirmation" placeholder="Confirm new password"
+                                class="form-control @error('new_password_confirmation') is-invalid @enderror">
 
-                                @error('confirm_new_password')
-                                  <span class="text-danger">{{ $message }}</span>
+                                @error('new_password_confirmation')
+                                  <span class="text-danger w-100">{{ $message }}</span>
                                 @enderror
 
-                                <button class="btn btn-outline-dark" type="button">
+                                {{-- <button class="btn btn-outline-dark" type="button">
                                   <i class="ri-eye-line text-black"></i>
-                                </button>
+                                </button> --}}
                               </div>
                             </div>
 
                           <div class="col-12 d-flex justify-content-start">
                             <div class="d-flex justify-content-between">
-                              <button type="button" class="btn btn-primary">Change Password</button>
-                              <button type="button" class="btn btn-danger ms-3">Cancel</button>
+                              <button type="submit" class="btn btn-primary">Change Password</button>
+                              <button type="submit" class="btn btn-danger ms-3">Cancel</button>
                             </div>
                           </div>
                         </div>
@@ -229,4 +230,5 @@
 </div>
 
 <script src="{{ asset('backend/assets/js/admin-profile.js') }}"></script>
+
 @endsection

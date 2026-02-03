@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 class AdminController extends Controller
@@ -69,7 +70,31 @@ class AdminController extends Controller
 
   /* ------ Admin Update Password Function Start  ------ */
   public function AdminUpdatePassword(Request $request){
+    $user = Auth::user();
+    $request->validate([
+      'current_password' => 'required',
+      'new_password' => 'required|confirmed',
+    ]);
 
+    if(!Hash::check($request->current_password, $user->password)){
+      $notification = array(
+        'message' => 'Current password does not match.',
+        'alert-type' => 'error',
+      );
+      return back()->with($notification);
+    }
+
+    User::whereId($user->id)->update([
+      'password' => Hash::make($request->new_password),
+    ]);
+
+    Auth::logout();
+
+    $notification = array(
+      'message' => 'Password updated successfully.',
+      'alert-type' => 'success',
+      );
+    return redirect()->route('login')->with($notification);
   }
   /* ------ Admin Update Password Function End  ------ */
 
