@@ -21,7 +21,7 @@ class BackendController extends Controller{
     $validated = $request->validate([
       'title' => 'required|string|max:50',
       'button' => 'required|string|max:50',
-      'link' => 'required|url|max:50',
+      'link' => 'required|string|max:50',
       'description' => 'required|string|max:300',
       'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);

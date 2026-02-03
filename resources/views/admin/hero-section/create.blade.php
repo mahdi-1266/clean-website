@@ -27,7 +27,7 @@
           <!-- Email Input -->
           <div class="mb-3">
             <label for="link" class="form-label">Button Link</label>
-            <input type="url" class="form-control" name="link" id="link" placeholder="Enter button link">
+            <input type="text" class="form-control" name="link" id="link" placeholder="Enter button link">
           </div>
 
           <!-- Password Input -->
