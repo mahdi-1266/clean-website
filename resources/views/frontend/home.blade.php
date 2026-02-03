@@ -51,7 +51,7 @@
 <body class="body-color">
 
 <!-- Preloader Start -->
-<div id="preloader">
+<!-- <div id="preloader">
   <div class="bubble-bg"></div>
   <img src="{{ asset('frontend/assets/logo/fevicon.png') }}" width="120" class="mb-3" alt="logo icon">
   <div class="bubble-container">
@@ -73,7 +73,7 @@
     <div class="bubble"></div>
     <div class="bubble"></div>
   </div>
-</div>
+</div> -->
 <!-- Preloader End -->
 
 <!-- Start switchbtn -->
