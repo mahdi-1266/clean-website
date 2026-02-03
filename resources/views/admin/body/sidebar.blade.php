@@ -19,26 +19,21 @@
       </li>
 
 
-      <li class="treeview">
-        <a href="#!">
+      <li class="treeview home-menu">
+        <a href="{{ route('dashboard') }}">
           <i class="ri-home-line"></i>
           <span class="menu-text">Home</span>
         </a>
+      </li>
+
+      <li class="treeview">
+        <a href="#!">
+          <i class="ri-home-line"></i>
+          <span class="menu-text">Hero Section</span>
+        </a>
         <ul class="treeview-menu">
           <li>
-            <a href="calendar.html">Daygrid View</a>
-          </li>
-          <li>
-            <a href="calendar-external-draggable.html">External Draggable</a>
-          </li>
-          <li>
-            <a href="calendar-google.html">Google Calendar</a>
-          </li>
-          <li>
-            <a href="calendar-list-view.html">List View</a>
-          </li>
-          <li>
-            <a href="calendar-selectable.html">Selectable</a>
+            <a href="{{ route('hero.section') }}">Hero Section</a>
           </li>
         </ul>
       </li>

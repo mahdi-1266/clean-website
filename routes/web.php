@@ -33,4 +33,8 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::controller(BackendController::class)->group(function(){});
+Route::controller(BackendController::class)->group(function(){
+  Route::get('/hero/section', 'HeroSection')->name('hero.section');
+  Route::get('/create/hero/section', 'CreateHeroSection')->name('add.hero.section');
+  Route::post('/store/hero/section', 'StoreHeroSection')->name('store.hero.section');
+});
