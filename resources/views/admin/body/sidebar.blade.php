@@ -42,6 +42,14 @@
           </li>
         </ul>
       </li>
+
+      <li>
+        <a href="{{ route('all.portfolio') }}">
+          <i class="ri-home-line"></i>
+          <span class="menu-text">Portfolio</span>
+        </a>
+        
+      </li>
     </ul>
   </div>
   <!-- Sidebar menu ends -->

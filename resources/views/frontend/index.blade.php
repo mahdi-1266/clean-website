@@ -108,7 +108,7 @@
 
   <!-- Right Image -->
   <div class="col-lg-6 text-center order-1 order-lg-2">
-    <img src="assets/about_img/01_img.webp" alt="About Cleaning Image" class="img-fluid rounded-4 shadow about-image">
+    <img src="{{ asset('frontend/assets/about_img/01_img.webp') }}" alt="About Cleaning Image" class="img-fluid rounded-4 shadow about-image">
   </div>
   </div>
 </div>
@@ -116,80 +116,76 @@
 <!-- About Section End -->
 
 <!-- Why Choose Us Section Start -->
-<section class="why-choose-us py-5 position-relative">
+<!-- <section class="why-choose-us py-5 position-relative">
    <div class="container">
-  <!-- Section Title -->
-  <div class="text-center mb-3 mb-lg-5 position-relative z-2" data-aos="fade-up">
-    <span class="sub-title text-uppercase fw-semibold fs-6">
-      <i class="fa-solid fa-broom me-2 primary-text cleaning-icon"></i>Why Choose Us
-    </span>
-    <h2 class="display-6 fw-bold mb-3 heading-text">
-      We Don’t Just Clean — <span class="primary-text">We Care</span>
-    </h2>
-    <p class="para-text">
-      Cleanysphere delivers spotless results with trusted professionals, eco-friendly solutions,
-      and a 100% satisfaction guarantee that makes your space shine brighter.
-    </p>
-  </div>
+      <div class="text-center mb-3 mb-lg-5 position-relative z-2" data-aos="fade-up">
+        <span class="sub-title text-uppercase fw-semibold fs-6">
+          <i class="fa-solid fa-broom me-2 primary-text cleaning-icon"></i>Why Choose Us
+        </span>
+        <h2 class="display-6 fw-bold mb-3 heading-text">
+          We Don’t Just Clean — <span class="primary-text">We Care</span>
+        </h2>
+        <p class="para-text">
+          Cleanysphere delivers spotless results with trusted professionals, eco-friendly solutions,
+          and a 100% satisfaction guarantee that makes your space shine brighter.
+        </p>
+      </div>
 
-  <!-- Features -->
-  <div class="row g-4 text-center justify-content-center" data-aos="fade-up">
-    <div class="col-md-6 col-lg-4">
-      <div class="feature-card card-color rounded-3 position-relative overflow-hidden">
-        <i class="fa-solid fa-user-shield feature-icon fs-1 primary-text mb-3"></i>
-        <h3 class="heading-text fw-semibold fs-5">Trained & Verified Staff</h3>
-        <p class="para-text">All our professionals are background-checked and expertly trained for your peace of mind.</p>
+      <div class="row g-4 text-center justify-content-center" data-aos="fade-up">
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card card-color rounded-3 position-relative overflow-hidden">
+            <i class="fa-solid fa-user-shield feature-icon fs-1 primary-text mb-3"></i>
+            <h3 class="heading-text fw-semibold fs-5">Trained & Verified Staff</h3>
+            <p class="para-text">All our professionals are background-checked and expertly trained for your peace of mind.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card card-color rounded-3 position-relative overflow-hidden">
+            <i class="fa-solid fa-leaf feature-icon fs-1 primary-text mb-3"></i>
+            <h3 class="heading-text fw-semibold fs-5">Eco-Friendly Products</h3>
+            <p class="para-text">We use safe, non-toxic cleaning agents that protect your health and the planet.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card card-color rounded-3 position-relative overflow-hidden">
+            <i class="fa-solid fa-sack-dollar feature-icon fs-1 primary-text mb-3"></i>
+            <h3 class="heading-text fw-semibold fs-5">Affordable Pricing</h3>
+            <p class="para-text">Enjoy top-quality cleaning at transparent and budget-friendly prices.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card card-color rounded-3 position-relative overflow-hidden">
+            <i class="fa-solid fa-bolt feature-icon fs-1 primary-text mb-3"></i>
+            <h3 class="heading-text fw-semibold fs-5">Same-Day Service</h3>
+            <p class="para-text">Need an urgent clean-up? Our team is ready to serve you on the same day.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card card-color rounded-3 position-relative overflow-hidden">
+            <i class="fa-solid fa-thumbs-up feature-icon fs-1 primary-text mb-3"></i>
+            <h3 class="heading-text fw-semibold fs-5">100% Satisfaction Guarantee</h3>
+            <p class="para-text">Your happiness is our top priority — we don’t stop until you’re satisfied.</p>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="col-md-6 col-lg-4">
-      <div class="feature-card card-color rounded-3 position-relative overflow-hidden">
-        <i class="fa-solid fa-leaf feature-icon fs-1 primary-text mb-3"></i>
-        <h3 class="heading-text fw-semibold fs-5">Eco-Friendly Products</h3>
-        <p class="para-text">We use safe, non-toxic cleaning agents that protect your health and the planet.</p>
-      </div>
-    </div>
-    <div class="col-md-6 col-lg-4">
-      <div class="feature-card card-color rounded-3 position-relative overflow-hidden">
-        <i class="fa-solid fa-sack-dollar feature-icon fs-1 primary-text mb-3"></i>
-        <h3 class="heading-text fw-semibold fs-5">Affordable Pricing</h3>
-        <p class="para-text">Enjoy top-quality cleaning at transparent and budget-friendly prices.</p>
-      </div>
-    </div>
-    <div class="col-md-6 col-lg-4">
-      <div class="feature-card card-color rounded-3 position-relative overflow-hidden">
-        <i class="fa-solid fa-bolt feature-icon fs-1 primary-text mb-3"></i>
-        <h3 class="heading-text fw-semibold fs-5">Same-Day Service</h3>
-        <p class="para-text">Need an urgent clean-up? Our team is ready to serve you on the same day.</p>
-      </div>
-    </div>
-    <div class="col-md-6 col-lg-4">
-      <div class="feature-card card-color rounded-3 position-relative overflow-hidden">
-        <i class="fa-solid fa-thumbs-up feature-icon fs-1 primary-text mb-3"></i>
-        <h3 class="heading-text fw-semibold fs-5">100% Satisfaction Guarantee</h3>
-        <p class="para-text">Your happiness is our top priority — we don’t stop until you’re satisfied.</p>
-      </div>
-    </div>
-  </div>
-</div>
 
-<!-- Floating Bubbles -->
-<div class="bubbles">
-  <span style="--i:11;"></span>
-  <span style="--i:14;"></span>
-  <span style="--i:19;"></span>
-  <span style="--i:22;"></span>
-  <span style="--i:25;"></span>
-  <span style="--i:17;"></span>
-  <span style="--i:9;"></span>
-  <span style="--i:13;"></span>
-</div>
-</section>
+    <div class="bubbles">
+      <span style="--i:11;"></span>
+      <span style="--i:14;"></span>
+      <span style="--i:19;"></span>
+      <span style="--i:22;"></span>
+      <span style="--i:25;"></span>
+      <span style="--i:17;"></span>
+      <span style="--i:9;"></span>
+      <span style="--i:13;"></span>
+    </div>
+</section> -->
 <!-- Why Choose Us Section End -->
 
 <!-- Services Section Start -->
-<section class="our-services py-5 body-color">
+<!-- <section class="our-services py-5 body-color">
   <div class="container position-relative">
-    <!-- Section Title -->
     <div class="text-center mb-3 mb-lg-5 position-relative z-2" data-aos="fade-up">
       <span class="sub-title text-uppercase fw-semibold primary-text fs-6">
         <i class="fa-solid fa-soap me-2 primary-text cleaning-icon"></i>Our Services
@@ -203,9 +199,7 @@
       </p>
     </div>
 
-    <!-- Services Grid -->
     <div class="row g-4 justify-content-center" data-aos="fade-up">
-      <!-- Service Item -->
       <div class="col-sm-6 col-lg-4 d-flex">
         <div class="service-glass-card  rounded-3 position-relative overflow-hidden card-color w-100 d-flex flex-column text-center p-4">
           <div class="icon-floating mb-3">
@@ -267,7 +261,6 @@
       </div>
 
     </div>
-    <!-- View All Services Button -->
     <div class="text-center mt-4 mt-lg-5" data-aos="fade-up">
       <a href="services.html" class="btn btn-view-services">
         View All Services
@@ -275,7 +268,7 @@
       </a>
     </div>
   </div>
-</section>
+</section> -->
 <!-- Services Section End -->
 
 <!-- Project Section -->
@@ -294,37 +287,25 @@
         </p>
       </div>
 
+      @php
+        $portfolio = App\Models\Portfolio::all();
+      @endphp
+
     <!-- Splide Slider -->
     <div id="portfolio-slider" class="splide">
       <div class="splide__track">
         <ul class="splide__list">
-          <li class="splide__slide">
-            <div class="card card-color">
-              <img src="assets/project_img/01_img.webp" alt="Car Cleaning">
-              <div class="p-3">
-                <h3 class="fw-bold heading-text fs-6">Car Cleaning</h3>
-                <p class="mb-0 para-text">Office cleaning</p>
+         @foreach ( $portfolio as $item)
+            <li class="splide__slide">
+              <div class="card card-color">
+                <img src="{{ asset($item->image) }}" alt="Car Cleaning">
+                <div class="p-3">
+                  <h3 class="fw-bold heading-text fs-6">{{ $item->title }}</h3>
+                  <p class="mb-0 para-text">{{ $item->desc }}</p>
+                </div>
               </div>
-            </div>
-          </li>
-          <li class="splide__slide">
-            <div class="card card-color">
-              <img src="assets/project_img/02_img.webp" alt="Dishes Cleaning">
-              <div class="p-3">
-                <h3 class="fw-bold heading-text fs-6">Dishes Cleaning</h3>
-                <p class="mb-0 para-text">Window cleaning</p>
-              </div>
-            </div>
-          </li>
-          <li class="splide__slide">
-            <div class="card card-color">
-              <img src="assets/project_img/03_img.webp" alt="Outdoor Cleaning">
-              <div class="p-3">
-                <h3 class="fw-bold heading-text fs-6">Outdoor Cleaning</h3>
-                <p class="mb-0 para-text">Office cleaning</p>
-              </div>
-            </div>
-          </li>
+            </li>
+         @endforeach
         </ul>
       </div>
     </div>
@@ -423,7 +404,7 @@
       <!-- Project Item -->
       <div class="col-lg-4 col-md-6">
         <div class="project-card position-relative overflow-hidden rounded-4 shadow-sm" data-aos="fade-up">
-          <img src="assets/project_img/01_img.webp" alt="Home Cleaning" class="img-fluid w-100">
+          <img src="{{ asset('frontend/assets/project_img/01_img.webp') }}" alt="Home Cleaning" class="img-fluid w-100">
           <div class="project-overlay d-flex flex-column align-items-center justify-content-center text-center">
             <a href="project-details.html" class="view-btn" aria-label="view"><i class="fa-solid fa-eye"></i></a>
             <i class="fa-solid fa-house-chimney-window fa-2x mb-2 primary-text"></i>
@@ -436,7 +417,7 @@
       <!-- Project Item -->
       <div class="col-lg-4 col-md-6">
         <div class="project-card position-relative overflow-hidden rounded-4 shadow-sm" data-aos="fade-up">
-          <img src="assets/project_img/02_img.webp" alt="Office Cleaning" class="img-fluid">
+          <img src="{{ asset('frontend/assets/project_img/02_img.webp') }}" alt="Office Cleaning" class="img-fluid">
           <div class="project-overlay d-flex flex-column align-items-center justify-content-center text-center">
             <a href="project-details.html" class="view-btn" aria-label="view"><i class="fa-solid fa-eye"></i></a>
             <i class="fa-solid fa-building fa-2x mb-2 primary-text"></i>
@@ -449,7 +430,7 @@
       <!-- Project Item -->
       <div class="col-lg-4 col-md-6 col-6">
         <div class="project-card position-relative overflow-hidden rounded-4 shadow-sm" data-aos="fade-up">
-          <img src="assets/project_img/03_img.webp" alt="Carpet Cleaning" class="img-fluid">
+          <img src="{{ asset('frontend/assets/project_img/03_img.webp') }}" alt="Carpet Cleaning" class="img-fluid">
           <div class="project-overlay d-flex flex-column align-items-center justify-content-center text-center">
             <a href="project-details.html" class=" view-btn" aria-label="view"><i class="fa-solid fa-eye"></i></a>
             <i class="fa-solid fa-soap fa-2x mb-2 primary-text"></i>
@@ -462,7 +443,7 @@
       <!-- Project Item -->
       <div class="col-lg-4 col-md-6">
         <div class="project-card position-relative overflow-hidden rounded-4 shadow-sm" data-aos="fade-up">
-          <img src="assets/project_img/04_img.webp" alt="Carpet Cleaning" class="img-fluid">
+          <img src="{{ asset('frontend/assets/project_img/04_img.webp') }}" alt="Carpet Cleaning" class="img-fluid">
           <div class="project-overlay d-flex flex-column align-items-center justify-content-center text-center">
             <a href="project-details.html" class=" view-btn" aria-label="view"><i class="fa-solid fa-eye"></i></a>
             <i class="fa-solid fa-truck-moving fa-2x mb-2 primary-text"></i>
@@ -475,7 +456,7 @@
       <!-- Project Item -->
       <div class="col-lg-4 col-md-6">
         <div class="project-card position-relative overflow-hidden rounded-4 shadow-sm" data-aos="fade-up">
-          <img src="assets/project_img/05_img.webp" alt="Carpet Cleaning" class="img-fluid rounded-4">
+          <img src="{{ asset('frontend/assets/project_img/05_img.webp') }}" alt="Carpet Cleaning" class="img-fluid rounded-4">
           <div class="project-overlay d-flex flex-column align-items-center justify-content-center text-center">
             <a href="assets/project_img/05_img.webp" class="view-btn" aria-label="view"><i class="fa-solid fa-eye"></i></a>
               <i class="fa-solid fa-spray-can-sparkles fa-2x mb-2 primary-text"></i>
@@ -488,7 +469,7 @@
       <!-- Project Item -->
       <div class="col-lg-4 col-md-6">
         <div class="project-card position-relative overflow-hidden rounded-4 shadow-sm" data-aos="fade-up">
-          <img src="assets/project_img/06_img.webp" alt="Carpet Cleaning" class="img-fluid rounded-4">
+          <img src="{{ asset('frontend/assets/project_img/06_img.webp') }}" alt="Carpet Cleaning" class="img-fluid rounded-4">
           <div class="project-overlay d-flex flex-column align-items-center justify-content-center text-center">
             <a href="project-details.html" class=" view-btn" aria-label="view"><i class="fa-solid fa-eye"></i></a>
             <i class="fa-solid fa-wand-magic-sparkles fa-2x mb-2 primary-text"></i>
@@ -530,7 +511,7 @@
       <!-- Team Member -->
       <div class="col-lg-3 col-md-6">
         <div class="team-card position-relative overflow-hidden rounded-4 shadow-sm">
-          <img src="assets/team-img/team_img_1.webp" alt="John Doe" class="img-fluid rounded-4">
+          <img src="{{ asset('frontend/assets/team-img/team_img_1.webp') }}" alt="John Doe" class="img-fluid rounded-4">
           <div class="team-overlay d-flex flex-column align-items-center justify-content-center text-center">
             <h3 class="fw-bold mb-1 fs-5">John Doe</h3>
             <p class="small mb-2">Lead Cleaner</p>
@@ -547,7 +528,7 @@
       <!-- Team Member -->
       <div class="col-lg-3 col-md-6">
         <div class="team-card position-relative overflow-hidden rounded-4 shadow-sm">
-          <img src="assets/team-img/team_img_2.webp" alt="Jane Smith" class="img-fluid rounded-4">
+          <img src="{{ asset('frontend/assets/team-img/team_img_2.webp') }}" alt="Jane Smith" class="img-fluid rounded-4">
           <div class="team-overlay d-flex flex-column align-items-center justify-content-center text-center">
             <h3 class="fw-bold mb-1 fs-5">Jane Smith</h3>
             <p class="small mb-2">Office Cleaning Expert</p>
@@ -564,7 +545,7 @@
       <!-- Team Member -->
       <div class="col-lg-3 col-md-6">
         <div class="team-card position-relative overflow-hidden rounded-4 shadow-sm">
-          <img src="assets/team-img/team_img_3.webp" alt="Mike Lee" class="img-fluid rounded-4">
+          <img src="{{ asset('frontend/assets/team-img/team_img_3.webp') }}" alt="Mike Lee" class="img-fluid rounded-4">
           <div class="team-overlay d-flex flex-column align-items-center justify-content-center text-center">
             <h3 class="fw-bold mb-1 fs-5">Mike Lee</h3>
             <p class="small mb-2">Sanitization Specialist</p>
@@ -581,7 +562,7 @@
       <!-- Team Member -->
       <div class="col-lg-3 col-md-6">
         <div class="team-card position-relative overflow-hidden rounded-4 shadow-sm">
-          <img src="assets/team-img/team_img_4.webp" alt="Sara White" class="img-fluid rounded-4">
+          <img src="{{ asset('frontend/assets/team-img/team_img_4.webp') }}" alt="Sara White" class="img-fluid rounded-4">
           <div class="team-overlay d-flex flex-column align-items-center justify-content-center text-center">
             <h3 class="fw-bold mb-1 fs-5">Sara White</h3>
             <p class="small mb-2">Window & Carpet Cleaning</p>
@@ -623,7 +604,7 @@
           <!-- Testimonial Item -->
           <li class="splide__slide">
             <div class="testimonial-card p-4 rounded-4 shadow-sm text-center">
-              <img src="assets/testimonial_img/testi_img_1.webp" alt="Client 1" class="testimonial-img mb-3 rounded-circle">
+              <img src="{{ asset('frontend/assets/testimonial_img/testi_img_1.webp') }}" alt="Client 1" class="testimonial-img mb-3 rounded-circle">
               <p class="para-text mb-3">
                 "Cleanysphere did an amazing job cleaning my home! The staff were professional, friendly, and thorough. Highly recommend!"
               </p>
@@ -642,7 +623,7 @@
           <!-- Testimonial Item -->
           <li class="splide__slide">
             <div class="testimonial-card p-4 rounded-4 shadow-sm text-center">
-              <img src="assets/testimonial_img/testi_img_2.webp" alt="Client 2" class="testimonial-img mb-3 rounded-circle">
+              <img src="{{ asset('frontend/assets/testimonial_img/testi_img_2.webp') }}" alt="Client 2" class="testimonial-img mb-3 rounded-circle">
               <p class="para-text mb-3">
                 "Their office cleaning service is top-notch! Our workspace is spotless and feels much more productive."
               </p>
@@ -661,7 +642,7 @@
           <!-- Testimonial Item -->
           <li class="splide__slide">
             <div class="testimonial-card p-4 rounded-4 shadow-sm text-center">
-              <img src="assets/testimonial_img/testi_img_3.webp" alt="Client 3" class="testimonial-img mb-3 rounded-circle">
+              <img src="{{ asset('frontend/assets/testimonial_img/testi_img_3.webp') }}" alt="Client 3" class="testimonial-img mb-3 rounded-circle">
               <p class="para-text mb-3">
                 "The team is amazing! They sanitized our entire office and left everything sparkling clean. Highly professional!"
               </p>
@@ -812,7 +793,7 @@
           <!-- Blog Card 1 -->
           <li class="splide__slide">
             <div class="card blog-card card-color h-100 d-flex flex-column">
-              <img src="assets/blog_img/01_img.webp" alt="Visit our office" class="img-fluid">
+              <img src="{{ asset('frontend/assets/blog_img/01_img.webp') }}" alt="Visit our office" class="img-fluid">
               <div class="p-3 d-flex flex-column flex-grow-1">
                 <div class="blog-meta mb-2">
                   <i class="fa-regular fa-calendar"></i> 16 Jan, 2026
@@ -829,7 +810,7 @@
           <!-- Blog Card 2 -->
           <li class="splide__slide">
             <div class="card blog-card card-color h-100 d-flex flex-column">
-              <img src="assets/blog_img/02_img.webp" alt="Toilet Cleaning" class="img-fluid">
+              <img src="{{ asset('frontend/assets/blog_img/02_img.webp') }}" alt="Toilet Cleaning" class="img-fluid">
               <div class="p-3 d-flex flex-column flex-grow-1">
                 <div class="blog-meta mb-2">
                   <i class="fa-regular fa-calendar"></i> 01 Nov, 2025
@@ -846,7 +827,7 @@
           <!-- Blog Card 3 -->
           <li class="splide__slide">
             <div class="card blog-card card-color h-100 d-flex flex-column">
-              <img src="assets/blog_img/03_img.webp" alt="Cleaning Your Home" class="img-fluid">
+              <img src="{{ asset('frontend/assets/blog_img/03_img.webp') }}" alt="Cleaning Your Home" class="img-fluid">
               <div class="p-3 d-flex flex-column flex-grow-1">
                 <div class="blog-meta mb-2">
                   <i class="fa-regular fa-calendar"></i> 26 Oct, 2025
