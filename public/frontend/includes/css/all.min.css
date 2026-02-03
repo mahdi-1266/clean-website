@@ -2,7 +2,72 @@
  * Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  * Copyright 2023 Fonticons, Inc.
- */
+*/
+
+
+/* Pagination wrapper styles: subtle glass background, lift on hover, and nice transitions */
+/* @keyframes pagination-fade-up {
+	from { opacity: 0; transform: translateY(10px); }
+	to   { opacity: 1; transform: translateY(0); }
+}
+
+.pagination-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0.65rem 0.75rem;
+	border-radius: 14px;
+	background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+	transition: transform .25s cubic-bezier(.2,.9,.3,1), box-shadow .25s ease, background-color .25s ease;
+	transform: translateZ(0);
+	animation: pagination-fade-up .55s cubic-bezier(.2,.9,.3,1) both;
+	-webkit-backdrop-filter: blur(6px);
+	backdrop-filter: blur(6px);
+	border: 1px solid rgba(255,255,255,0.03);
+}
+
+.pagination-wrapper:hover {
+	transform: translateY(-6px);
+	box-shadow: 0 14px 35px rgba(2,6,23,0.12);
+} */
+
+/* Pagination links (Laravel/Bootstrap output) */
+/* .pagination-wrapper .page-link,
+.pagination-wrapper .pagination a,
+.pagination-wrapper .pagination span {
+	color: #0d6efd;
+	margin: 0 .15rem;
+	padding: .42rem .65rem;
+	border-radius: 9px;
+	transition: background-color .18s ease, color .18s ease, transform .12s ease, box-shadow .18s ease;
+	background: transparent;
+	border: none;
+}
+
+.pagination-wrapper .page-link:hover,
+.pagination-wrapper .pagination a:hover {
+	background: linear-gradient(90deg, rgba(13,110,253,0.12), rgba(13,110,253,0.06));
+	color: #062b6f;
+	transform: translateY(-3px) scale(1.02);
+}
+
+.pagination-wrapper .page-item.active .page-link,
+.pagination-wrapper .pagination .active span {
+	background: linear-gradient(90deg, #0d6efd, #3aa0ff);
+	color: #ffffff;
+	box-shadow: 0 8px 22px rgba(13,110,253,0.18);
+	transform: translateY(-4px);
+} */
+
+/* Respect reduced motion preferences */
+/* @media (prefers-reduced-motion: reduce) {
+	.pagination-wrapper,
+	.pagination-wrapper .page-link {
+		transition: none !important;
+		animation: none !important;
+	}
+} */
+
 .fa {
   font-family: var(--fa-style-family, "Font Awesome 6 Free");
   font-weight: var(--fa-style, 900);

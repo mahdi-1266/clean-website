@@ -13,24 +13,26 @@
                   <th class="border">ID</th>
                   <th class="border">Title</th>
                   <th class="border">Description</th>
-                  <th class="border">Button</th>
+                  <th class="border">Icon</th>
                   <th class="border">Photo</th>
                 </tr>
               </thead>
 
               @php
-                $hero = App\Models\HeroSection::get();
+                $projects = App\Models\Projects::get();
               @endphp
 
               <tbody>
-                @foreach ($hero as $hero)
+                @foreach ($projects as $project)
                   <tr class="text-center">
-                    <td class="border">{{ $hero->id }}</td>
-                    <td class="border">{{ $hero->title }}</td>
-                    <td class="border">{{ $hero->description }}</td>
-                    <td class="border">{{ $hero->button }}</td>
+                    <td class="border">{{ $project->id }}</td>
+                    <td class="border">{{ $project->title }}</td>
+                    <td class="border">{{ $project->description }}</td>
                     <td class="border">
-                      <img src="{{ $hero->image}}" width="100" height="100" alt="Image">
+                      <img src="{{ asset($project->icon) }}" width="40px" height="40px" alt="">
+                    </td>
+                    <td class="border">
+                      <img src="{{ asset($project->image) }}" width="100px" height="50" alt="">
                     </td>
                   </tr>
                 @endforeach
@@ -39,7 +41,7 @@
           </div>
         </div>
 
-        <a href="{{ route('add.hero.section') }}" class="btn btn-primary mt-3">Add Hero Section</a>
+        <a href="{{ route('add.project') }}" class="btn btn-primary mt-3">Add Project</a>
         <!-- Table end -->
 
         <!-- Pagination start -->

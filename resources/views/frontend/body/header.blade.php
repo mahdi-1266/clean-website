@@ -101,26 +101,9 @@
                   <!-- Projects Dropdown -->
                   <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle d-flex align-items-center gap-2"
-                          href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Projects
-                          <i class="fa-solid fa-angle-down"></i>
+                      href="{{ route('all.projects') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Projects
                       </a>
-                      <ul class="dropdown-menu custom-dropdown shadow">
-                          <li class="dropdown-title p-3 py-2 mega-title">Our Projects</li>
-                          <li><hr class="dropdown-divider"></li>
-
-                          <li>
-                          <a class="dropdown-item" href="pricing.html">
-                            <i class="fa-solid fa-diagram-project me-2"></i> All Projects
-                          </a>
-                        </li>
-
-                          <li>
-                          <a class="dropdown-item" href="project-details.html">
-                            <i class="fa-solid fa-file-circle-check me-2"></i> Project Details
-                          </a>
-                        </li>
-                    </ul>
                   </li>
 
                   <!-- Blogs Dropdown -->

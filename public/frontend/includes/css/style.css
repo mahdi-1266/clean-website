@@ -2352,51 +2352,59 @@ div.error {
 /* ===============================
    Modern Pagination Design
 ================================ */
-.pagination-wrapper .pagination {
-  gap: 10px;
-}
-
-.pagination-wrapper .page-link {
-  width: 44px;
-  height: 44px;
+.project-img-container{
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
+  margin-bottom: 10px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  font-weight: 600;
-  border: 1px solid transparent;
-  background: var(--card-bg, rgba(255, 255, 255, 0.08));
-  color: var(--heading-text);
-  backdrop-filter: blur(10px);
-  transition: 0.35s ease;
+  align-items: center;
 }
 
-.pagination-wrapper .page-item.active .page-link {
-  background: var(--primary-color);
-  color: #fff;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+
+/* Pagination list */
+.pagination {
+    gap: 0.3rem;
+    list-style: none;
+    /* padding-left: 0; */
+    /* margin: 0; */
+    padding: 20px;
+    flex-wrap: nowrap;
 }
 
-.pagination-wrapper .page-item:not(.active):not(.disabled) .page-link:hover {
-  background: var(--primary-color);
-  color: #fff;
-  transform: translateY(-3px);
+.pagination nav{
+  width: 50%;
 }
 
-.pagination-wrapper .page-item.disabled .page-link {
-  opacity: 0.4;
-  pointer-events: none;
+.pagination nav div:nth-child(1){
+  gap: 5px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Mobile Friendly */
-@media (max-width: 576px) {
-  .pagination-wrapper .page-link {
-    width: 38px;
-    height: 38px;
-    font-size: 14px;
-  }
+.pagination nav div:nth-child(2) span:last-child{
+  height: 50px !important;
+  padding-top: 10px;
 }
 
+.pagination nav div:nth-child(2) svg{
+  width: 30px;
+}
+
+.pagination nav div:nth-child(2) div:first-child{
+  width: 50%;
+  margin: auto;
+}
+
+.pagination nav div:nth-child(2) div:last-child{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+}
 /* =========================
    SERVICE DETAILS
 ========================= */

@@ -20,10 +20,15 @@
 
 
       <li class="treeview home-menu">
-        <a href="{{ route('dashboard') }}">
+        <a href="#!">
           <i class="ri-home-line"></i>
           <span class="menu-text">Home</span>
         </a>
+        <ul class="treeview-menu">
+          <li>
+            <a href="{{ route('dashboard') }}">Home</a>
+          </li>
+        </ul>
       </li>
 
       <li class="treeview">
@@ -38,13 +43,30 @@
         </ul>
       </li>
 
-      <li>
-        <a href="{{ route('all.portfolio') }}">
+      <li class="treeview">
+        <a href="#!">
           <i class="ri-home-line"></i>
           <span class="menu-text">Portfolio</span>
         </a>
-        
+        <ul class="treeview-menu">
+          <li>
+            <a href="{{ route('all.portfolio') }}">Portfolio</a>
+          </li>
+        </ul>
       </li>
+
+      <li class="treeview">
+        <a href="#!">
+          <i class="ri-home-line"></i>
+          <span class="menu-text">Projects</span>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <a href="{{ route('admin.projects') }}">Projects</a>
+          </li>
+        </ul>
+      </li>
+
     </ul>
   </div>
   <!-- Sidebar menu ends -->

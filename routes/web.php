@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\backend\BackendController;
+use App\Http\Controllers\frontend\FrontendController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Projects;
 use Illuminate\Support\Facades\Route;
 
 
@@ -32,18 +34,29 @@ Route::middleware('auth')->group(function () {
   Route::post('/admin/password/update', [AdminController::class, 'AdminUpdatePassword'])->name('admin.password.update');
 });
 
-Route::controller(BackendController::class)->group(function () {
+/* ----- Projects Route ----- */
+Route::controller(FrontendController::class)->group(function () {
+  Route::get('/all/projects', 'projects')->name('all.projects');
+});
 
-    Route::get('all/portfolio', 'AllPortfolio')->name('all.portfolio');
-    Route::get('/add/portfolio', 'AddPortfolio')->name('add.portfolio');
-    Route::post('/store/portfolio', 'StorePortfolio')->name('store.portfolio');
-    Route::get('/edit/portfolio/{id}', 'EditPortfolio')->name('edit.portfolio');
-    Route::post('/update/portfolio', 'UpdatePortfolio')->name('update.portfolio');
-    Route::get('/delete/portfolio/{id}', 'DeletePortfolio')->name('delete.portfolio');
+
+Route::controller(BackendController::class)->group(function () {
+  Route::get('/all/portfolio', 'AllPortfolio')->name('all.portfolio');
+  Route::get('/add/portfolio', 'AddPortfolio')->name('add.portfolio');
+  Route::post('/store/portfolio', 'StorePortfolio')->name('store.portfolio');
+  Route::get('/edit/portfolio/{id}', 'EditPortfolio')->name('edit.portfolio');
+  Route::post('/update/portfolio', 'UpdatePortfolio')->name('update.portfolio');
+  Route::get('/delete/portfolio/{id}', 'DeletePortfolio')->name('delete.portfolio');
 });
 
 Route::controller(BackendController::class)->group(function(){
   Route::get('/hero/section', 'HeroSection')->name('hero.section');
   Route::get('/create/hero/section', 'CreateHeroSection')->name('add.hero.section');
   Route::post('/store/hero/section', 'StoreHeroSection')->name('store.hero.section');
+});
+
+Route::controller(BackendController::class)->group(function(){
+  Route::get('/projects', 'projects')->name('admin.projects');
+  Route::get('/create/project', 'CreateProjects')->name('add.project');
+  Route::post('/store/project', 'StoreProject')->name('store.project');
 });
