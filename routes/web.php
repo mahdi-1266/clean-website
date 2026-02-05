@@ -36,9 +36,18 @@ Route::middleware('auth')->group(function () {
 
 /* ----- Projects Route ----- */
 Route::controller(FrontendController::class)->group(function () {
+  Route::get('/about', 'About')->name('about');
   Route::get('/all/projects', 'projects')->name('all.projects');
 });
 
+// About Section
+Route::controller(BackendController::class)->group(function () {
+  Route::get('/all/about', 'AllAbout')->name('all.about');
+  Route::get('/add/about', 'AddAbout')->name('add.about');
+  Route::post('/store/about', 'StoreAbout')->name('store.about');
+  Route::get('/edit/about/{id}', 'EditAbout')->name('edit.about');
+  Route::post('/update/about', 'UpdateAbout')->name('update.about');
+});
 
 Route::controller(BackendController::class)->group(function () {
   Route::get('/all/portfolio', 'AllPortfolio')->name('all.portfolio');

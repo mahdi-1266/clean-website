@@ -44,6 +44,13 @@
       </li>
 
       <li class="treeview">
+        <a href="{{ route('all.about') }}">
+          <i class="ri-home-line"></i>
+          <span class="menu-text">About</span>
+        </a>
+      </li>
+
+      <li class="treeview">
         <a href="#!">
           <i class="ri-home-line"></i>
           <span class="menu-text">Portfolio</span>

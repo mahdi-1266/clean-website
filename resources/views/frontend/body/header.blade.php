@@ -70,8 +70,8 @@
 
           <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-lg-center align-items-lg-center flex-grow-1 text-capitalize  nav_ul">
-                  <li class="nav-item"><a class="nav-link active" href="index-2.html">Home</a></li>
-                  <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                  <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">About</a></li>
 
                   <!-- Services Dropdown -->
                   <li class="nav-item dropdown">
