@@ -8,10 +8,14 @@ use Intervention\Image\ImageManager;
 use App\Models\Portfolio;
 use App\Models\HeroSection;
 use App\Models\Projects;
+use App\Models\OurTeam;
+use Intervention\Image\Colors\Rgb\Channels\Red;
+use Pest\Plugin\Manager;
 
 class BackendController extends Controller
 {
 
+  /* ------- Hero Section Start ------- */
   public function HeroSection(){
     return view('admin.hero-section.index');
   }
@@ -26,40 +30,106 @@ class BackendController extends Controller
       'title' => 'required|string|max:50',
       'button' => 'required|string|max:50',
       'link' => 'required|string|max:100',
-      'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+      'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
       'description' => 'required|string|max:300',
     ]);
 
-    if($request->hasFile('image')) {
+    if($request->hasFile('image')){
       $image = $request->file('image');
-      $imageName = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+      $imgName = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
       $manager = new ImageManager(new Driver());
       $img = $manager->read($image);
-      $img->resize(600, 400)->save(public_path('upload/hero-section/'.$imageName));
-      $save_url = 'upload/hero-section/'.$imageName;
+      $img->resize(600, 400)->save(public_path('upload/hero-section/'.$imgName));
+      $save_url = 'upload/hero-section/'.$imgName;
 
       HeroSection::create([
-      'title' => $request->title,
-      'button' => $request->button,
-      'link' => $request->link,
-      'image' => $save_url,
-      'description' => $request->description,
+        'title' => $request->title,
+        'button'  => $request->button,
+        'link' => $request->link,
+        'image' => $save_url,
+        'description' => $request->description,
       ]);
 
-      return redirect()->route('hero.section')->with('success, The hero section added successfully.');
+      return redirect()->route('hero.section');
+    }
+    else {
+      HeroSection::create([
+        'title' => $request->title,
+        'button'  => $request->button,
+        'link' => $request->link,
+        'description' => $request->description,
+      ]);
+    }
+
+    return redirect()->route('hero.section');
+  }
+
+  public function EditHeroSection($id){
+    $heroId = HeroSection::findOrFail($id);
+    return view('admin.hero-section.edit', compact('heroId'));
+  }
+
+  public function UpdateHeroSection(Request $request){
+    $request->validate([
+      'title' => 'required|string|max:50',
+      'button' => 'required|string|max:50',
+      'link' => 'required|string|max:100',
+      'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+      'description' => 'required|string|max:300',
+    ]);
+
+    $heroId = HeroSection::findOrFail($request->id);
+
+    if($request->hasFile('image')){
+      if($heroId->image && file_exists(public_path($heroId->image))){
+        unlink(public_path($heroId->image));
+      }
+
+      $image = $request->file('image');
+      $imageName = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+      $imgManager = new ImageManager(new Driver());
+      $img = $imgManager->read($image);
+      $img->resize(600, 400)->save(public_path('upload/hero-section/'.$imageName));
+      $saveUrl = 'upload/hero-section/'.$imageName;
+
+      $heroId->update([
+        'title' => $request->title,
+        'button' => $request->button,
+        'link' => $request->link,
+        'description' => $request->description,
+        'image' => $saveUrl,
+      ]);
+
+      return redirect()->route('hero.section');
     }
     else{
-      HeroSection::create([
+      $heroId->update([
         'title' => $request->title,
         'button' => $request->button,
         'link' => $request->link,
         'description' => $request->description,
       ]);
 
-      return redirect()->route('hero.section')->with('success, The hero section added successfully.');
+      return redirect()->route('hero.section');
     }
   }
 
+
+  public function DeleteHeroSection($id){
+    $heroId = HeroSection::findOrFail($id);
+
+    if($heroId->image && file_exists(public_path($heroId->image))){
+      unlink(public_path($heroId->image));
+    }
+
+    $heroId->delete();
+    return redirect()->route('hero.section');
+  }
+
+  /* ------- Hero Section End ------- */
+
+
+  /* ------- Portfolio Section Start ------- */
     public function AllPortfolio(){
         $portfolio = Portfolio::all();
         return view('admin.backend.portfolio.portfolio', compact('portfolio'));
@@ -70,26 +140,26 @@ class BackendController extends Controller
     }
 
     public function StorePortfolio(Request $request){
-    $request->validate([
+      $request->validate([
         'title' => 'required|string|max:255',
         'desc'  => 'required|string',
         'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-    ]);
+      ]);
 
-    if($request->hasFile('image')) {
-        $image = $request->file('image');
-        $manager = new ImageManager(new Driver());
-        $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        $img = $manager->read($image);
-        $img->resize(250, 250)->save(public_path('upload/backend/portfolio/'.$name_gen));
-        $save_url = 'upload/backend/portfolio/'.$name_gen;
+      if($request->hasFile('image')) {
+          $image = $request->file('image');
+          $manager = new ImageManager(new Driver());
+          $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+          $img = $manager->read($image);
+          $img->resize(250, 250)->save(public_path('upload/backend/portfolio/'.$name_gen));
+          $save_url = 'upload/backend/portfolio/'.$name_gen;
 
-        Portfolio::create([
-            'title' => $request->title,
-            'desc'  => $request->desc,
-            'image' => $save_url,
-        ]);
-    } else {
+          Portfolio::create([
+              'title' => $request->title,
+              'desc'  => $request->desc,
+              'image' => $save_url,
+          ]);
+      } else {
         Portfolio::create([
             'title' => $request->title,
             'desc'  => $request->desc,
@@ -106,16 +176,16 @@ class BackendController extends Controller
     }
 
     public function UpdatePortfolio(Request $request){
-    $request->validate([
+      $request->validate([
         'title' => 'required|string|max:255',
         'desc'  => 'required|string',
         'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-    ]);
+      ]);
 
-    $port_id = $request->id;
-    $portfolio = Portfolio::findOrFail($port_id);
+      $port_id = $request->id;
+      $portfolio = Portfolio::findOrFail($port_id);
 
-    if ($request->hasFile('image')) {
+    if ($request->hasFile('image')){
 
         if ($portfolio->image && file_exists(public_path($portfolio->image))) {
             unlink(public_path($portfolio->image));
@@ -152,6 +222,9 @@ class BackendController extends Controller
         Portfolio::findOrFail($id)->delete();
         return redirect()->route('all.portfolio');
     }
+
+    /* ------- Portfolio Section End ------- */
+
 
 
 
@@ -197,7 +270,7 @@ class BackendController extends Controller
         'description' => $request->description,
       ]);
 
-      return redirect()->route('projects')->with('success, The hero section added successfully.');
+      return redirect()->route('admin.projects')->with('success, The hero section added successfully.');
     }
     else{
       Projects::create([
@@ -206,8 +279,217 @@ class BackendController extends Controller
       ]);
 
       return redirect()->route('projects')->with('success, The hero section added successfully.');
+    }
   }
 
-  /* ------- Project End ------- */
+  public function EditProject($id){
+    $projectId = Projects::findOrFail($id);
+    return view('admin.projects.edit', compact('projectId'));
   }
+
+  public function UpdateProject(Request $request){
+    $request->validate([
+      'title' => 'required|string|max:50',
+      'description' => 'required|string|max:300',
+      'icon' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+      'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+    ]);
+
+    $data = [
+      'title' => $request->title,
+      'description' => $request->description
+    ];
+
+    $projectId = Projects::findOrFail($request->id);
+
+    if($request->hasFile('icon')){
+      if($projectId->icon && file_exists(public_path($projectId->icon))){
+        unlink(public_path($projectId->icon));
+      }
+
+      $iconImage = $request->file('icon');
+      $iconImageName = hexdec(uniqid()).'.'.$iconImage->getClientOriginalExtension();
+      $iconManager = new ImageManager(new Driver());
+      $iconImg = $iconManager->read($iconImage);
+      $iconImg->resize(30, 30)->save(public_path('upload/project/icon/'.$iconImageName));
+      $saveIconUrl = 'upload/project/icon/'.$iconImageName;
+
+      $projectId->update([
+        'title' => $request->title,
+        'description' => $request->description,
+        'icon' => $saveIconUrl,
+        // 'image' => $saveImgUrl,
+      ]);
+
+      return redirect()->route('admin.projects')->with('success', 'The project updated successfully');
+    }
+    else{
+      $projectId->update([
+        'title' => $request->title,
+        'description' => $request->description,
+      ]);
+
+      return redirect()->route('admin.projects')->with('success', 'The project updated successfully');
+    }
+
+    // Project Image
+    if($request->hasFile('image')){
+      if($projectId->image && file_exists(public_path($projectId->image))){
+        unlink(public_path($projectId->image));
+      }
+
+      $image = $request->file('image');
+      $imageName = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+      $manager = new ImageManager(new Driver());
+      $img = $manager->read($image);
+      $img->resize(400, 450)->save(public_path('upload/project/image/'.$imageName));
+      $saveImgUrl = 'upload/project/image/'.$imageName;
+
+      $projectId->update([
+        'title' => $request->title,
+        'description' => $request->description,
+        // 'icon' => $saveIconUrl,
+        'image' => $saveImgUrl,
+      ]);
+      return redirect()->route('admin.projects')->with('success', 'The project updated successfully');
+    }
+    else{
+      $projectId->update([
+        'title' => $request->title,
+        'description' => $request->description,
+      ]);
+      return redirect()->route('admin.projects')->with('success', 'The project updated successfully');
+    }
+  }
+
+  public function DeleteProject($id){
+    $projectId = Projects::findOrFail($id);
+
+    if($projectId->image && file_exists(public_path($projectId->image))){
+      unlink(public_path($projectId->image));
+    }
+    if($projectId->icon && file_exists(public_path($projectId->icon))){
+      unlink(public_path($projectId->icon));
+    }
+
+    $projectId->delete();
+    return redirect()->route('admin.projects');
+  }
+  /* ------- Project End ------- */
+
+
+  /* ------- Our Team Start ------- */
+  public function OurTeam(){
+    return view('admin.our-team.index');
+  }
+
+  public function CreateOurTeam(){
+    return view('admin.our-team.create');
+  }
+
+
+  public function StoreOurTeam(Request $request){
+    $request->validate([
+      'name' => 'required|string|max:50',
+      'role' => 'required|string|max:50',
+      'facebook_link' => 'required|string|max:50',
+      'instagram_link' => 'required|string|max:50',
+      'twitter_link' => 'required|string|max:50',
+      'linkedin_link' => 'required|string|max:50',
+      'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
+    ]);
+
+    // Creating Image
+    $image = $request->file('image');
+    $imageName = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+    $manager = new ImageManager(new Driver());
+    $img = $manager->read($image);
+    $img->resize(400, 400)->save(public_path('upload/our-team/'.$imageName));
+    $saveUrl = 'upload/our-team/'.$imageName;
+
+     OurTeam::create([
+      'name' => $request->name,
+      'role' => $request->role,
+      'facebook_link' => $request->facebook_link,
+      'instagram_link' => $request->instagram_link,
+      'twitter_link' => $request->twitter_link,
+      'linkedin_link' => $request->linkedin_link,
+      'image' => $saveUrl,
+    ]);
+
+    return redirect()->route('our-team')->with('success, The team member added successfully.');
+  }
+
+  public function DeleteOurTeam($id){
+    $teamMember = OurTeam::findOrFail($id);
+    if ($teamMember->image && file_exists(public_path($teamMember->image))) {
+      unlink(public_path($teamMember->image));
+    }
+    $teamMember->delete();
+    return redirect()->route('our-team')->with('success', 'The team member deleted successfully.');
+  }
+
+
+
+  public function EditOurTeam($id){
+    $teamMember = OurTeam::findOrFail($id);
+    return view('admin.our-team.edit', compact('teamMember'));
+  }
+
+
+  public function UpdateOurTeam(Request $request){
+
+    $request->validate([
+      'name' => 'required|string|max:50',
+      'role' => 'required|string|max:50',
+      'facebook_link' => 'required|string|max:255',
+      'instagram_link' => 'required|string|max:255',
+      'twitter_link' => 'required|string|max:255',
+      'linkedin_link' => 'required|string|max:255',
+      'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+    ]);
+
+    $teamId = $request->id;
+    $ourTeam = OurTeam::findOrFail($teamId);
+
+    if ($request->hasFile('image')) {
+      if ($ourTeam->image && file_exists(public_path($ourTeam->image))) {
+        unlink(public_path($ourTeam->image));
+      }
+
+      $image = $request->file('image');
+      $imageName = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+      $manager = new ImageManager(new Driver());
+      $img = $manager->read($image);
+      $img->resize(400, 400)->save(public_path('upload/our-team/'.$imageName));
+      $saveUrl = 'upload/our-team/'.$imageName;
+
+      $ourTeam->update([
+        'name' => $request->name,
+        'role' => $request->role,
+        'facebook_link' => $request->facebook_link,
+        'instagram_link' => $request->instagram_link,
+        'twitter_link' => $request->twitter_link,
+        'linkedin_link' => $request->linkedin_link,
+        'image' => $saveUrl,
+      ]);
+
+      return redirect()->route('our-team')->with('success', 'The team member updated successfully.');
+    }
+    else {
+      $ourTeam->update([
+        'name' => $request->name,
+        'role' => $request->role,
+        'facebook_link' => $request->facebook_link,
+        'instagram_link' => $request->instagram_link,
+        'twitter_link' => $request->twitter_link,
+        'linkedin_link' => $request->linkedin_link,
+      ]);
+
+      return redirect()->route('our-team')->with('success', 'The team member updated successfully.');
+    }
+  }
+
+
+  /* ------- Our Team End ------- */
 }

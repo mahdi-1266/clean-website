@@ -18,7 +18,7 @@
     <meta name="language" content="English">
     <title>Cleanysphere | Professional Cleaning Services for Home & Office</title>
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/logo/fevicon.png">
+    <link rel="icon" type="image/png" href="{{ asset('frontend/assets/logo/fevicon.png') }}">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:title" content="Cleanysphere | Reliable & Eco-Friendly Cleaning Services">

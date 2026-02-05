@@ -473,9 +473,14 @@ a:hover {
   justify-content: center;
 }
 
+/* .hero-img{
+  z-index: -10;
+  background: linear-gradient(0deg, rgba(var(--dark-rgb), 0.7), rgba(var(--dark-rgb), 0.7));
+} */
+
 .banner-main .slide-1 {
   background: linear-gradient(0deg, rgba(var(--dark-rgb), 0.7), rgba(var(--dark-rgb), 0.7)),
-    url("../../assets/banner_img/bg-1.webp");
+    url('../../assets/banner_img/bg-1.webp');
   background-size: cover;
   background-position: center;
 }
