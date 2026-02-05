@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
 Route::controller(FrontendController::class)->group(function () {
   Route::get('/about', 'About')->name('about');
   Route::get('/all/projects', 'projects')->name('all.projects');
+  Route::get('/contact', 'Contact')->name('contact');
 });
 
 Route::controller(BackendController::class)->group(function(){
@@ -65,6 +66,13 @@ Route::controller(BackendController::class)->group(function () {
   Route::post('/store/story', 'StoreStory')->name('store.story');
   Route::get('/edit/story/{id}', 'EditStory')->name('edit.story');
   Route::post('/update/story', 'UpdateStory')->name('update.story');
+});
+
+// Admin Contact 
+Route::controller(BackendController::class)->group(function () {
+  Route::get('/all/contact', 'AllContact')->name('all.contact');
+  Route::post('/store/contact', 'StoreContact')->name('store.contact');
+  Route::get('/delete/contact/{id}', 'DeleteContact')->name('delete.contact');
 });
 
 Route::controller(BackendController::class)->group(function (){

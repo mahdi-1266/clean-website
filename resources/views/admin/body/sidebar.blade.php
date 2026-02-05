@@ -93,6 +93,13 @@
         </ul>
       </li>
 
+      <li class="treeview">
+        <a href="{{ route('all.contact') }}">
+          <i class="ri-home-line"></i>
+          <span class="menu-text">Contact</span>
+        </a>
+      </li>
+
     </ul>
   </div>
   <!-- Sidebar menu ends -->

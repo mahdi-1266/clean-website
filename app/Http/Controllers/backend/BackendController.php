@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use App\Models\About;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
@@ -641,7 +642,36 @@ class BackendController extends Controller
       return redirect()->route('our-team')->with('success', 'The team member updated successfully.');
     }
   }
-
-
   /* ------- Our Team End ------- */
+
+  // Admin Contact
+  public function AllContact(){
+    $contact = Contact::get();
+    return view('admin.backend.contact.index',compact('contact'));
+  }
+
+  public function StoreContact(Request $request){
+    // $request->validate([
+    //     'name' => 'required|string|max:50',
+    //     'lname'  => 'required|string|max:50',
+    //     'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+    // ]);
+
+    Contact::create([
+        'name' => $request->name,
+        'lname'  => $request->lname,
+        'email'  => $request->email,
+        'phone'  => $request->phone,
+        'message'  => $request->message,
+    ]);
+
+    return redirect()->back();
+  }
+
+  public function DeleteContact($id){
+     $contact = Contact::findOrFail($id);
+    
+    $contact->delete();
+    return redirect()->route('all.contact');
+  }
 }
