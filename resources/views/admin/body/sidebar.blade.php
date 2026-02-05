@@ -74,6 +74,18 @@
         </ul>
       </li>
 
+      <li class="treeview">
+        <a href="#!">
+          <i class="ri-user-line"></i>
+          <span class="menu-text">Our Team</span>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <a href="{{ route('our-team') }}">Our Team</a>
+          </li>
+        </ul>
+      </li>
+
     </ul>
   </div>
   <!-- Sidebar menu ends -->

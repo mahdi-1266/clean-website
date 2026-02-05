@@ -11,30 +11,36 @@
               <thead>
                 <tr class="text-center">
                   <th class="border">ID</th>
-                  <th class="border">Title</th>
-                  <th class="border">Description</th>
-                  <th class="border">Icon</th>
+                  <th class="border">Name</th>
+                  <th class="border">Role</th>
+                  <th class="border">Facebook Icon</th>
+                  <th class="border">Instagram Icon</th>
+                  <th class="border">Twitter Icon</th>
+                  <th class="border">Linkedin Icon</th>
                   <th class="border">Photo</th>
-                  <th class="border">Action</th>
+                  <th class="borde">Action</th>
                 </tr>
               </thead>
 
               @php
-                $projects = App\Models\Projects::get();
+                $ourTeams = App\Models\OurTeam::get();
               @endphp
 
               <tbody>
-                @foreach ($projects as $project)
+                @foreach ($ourTeams as $ourTeam)
                   <tr class="text-center">
-                    <td class="border">{{ $project->id }}</td>
-                    <td class="border">{{ $project->title }}</td>
-                    <td class="border">{{ $project->description }}</td>
-                    <td class="border"><img src="{{ asset($project->icon) }}" width="40px" height="40px" alt=""></td>
-                    <td class="border"><img src="{{ asset($project->image) }}" width="100px" height="50" alt=""></td>
+                    <td class="border">{{ $ourTeam->id }}</td>
+                    <td class="border">{{ $ourTeam->name }}</td>
+                    <td class="border">{{ $ourTeam->role }}</td>
+                    <td class="border">{{ $ourTeam->facebook_link }}</td>
+                    <td class="border">{{ $ourTeam->instagram_link }}</td>
+                    <td class="border">{{ $ourTeam->twitter_link }}</td>
+                    <td class="border">{{ $ourTeam->linkedin_link }}</td>
+                    <td class="border"><img src="{{ asset($ourTeam->image) }}" width="100px" height="50" alt=""></td>
                     <td class="border">
                       <div class="d-flex justify-content-center gap-2">
-                        <a class="btn btn-primary btn-sm btn-icon" href="{{ route('edit.project', $project->id) }}"><i class="ri-edit-line"></i></a>
-                        <a class="btn btn-danger btn-sm btn-icon" href="{{ route('delete.project', $project->id) }}"><i class="ri-delete-bin-line"></i></a>
+                        <a class="btn btn-primary btn-sm btn-icon" href="{{ route('edit.our-team', $ourTeam->id) }}"><i class="ri-edit-line"></i></a>
+                        <a class="btn btn-danger btn-sm btn-icon" href="{{ route('delete.our-team', $ourTeam->id) }}"><i class="ri-delete-bin-line"></i></a>
                       </div>
                     </td>
                   </tr>
@@ -44,7 +50,7 @@
           </div>
         </div>
 
-        <a href="{{ route('add.project') }}" class="btn btn-primary mt-3">Add Project</a>
+        <a href="{{ route('add.our-team') }}" class="btn btn-primary mt-3">Add Team Member</a>
         <!-- Table end -->
 
         <!-- Pagination start -->

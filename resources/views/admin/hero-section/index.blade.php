@@ -15,6 +15,7 @@
                   <th class="border">Description</th>
                   <th class="border">Button</th>
                   <th class="border">Photo</th>
+                  <th class="border">Action</th>
                 </tr>
               </thead>
 
@@ -29,8 +30,12 @@
                     <td class="border">{{ $hero->title }}</td>
                     <td class="border">{{ $hero->description }}</td>
                     <td class="border">{{ $hero->button }}</td>
+                    <td class="border"><img src="{{ $hero->image}}" width="100" height="100" alt="Image"></td>
                     <td class="border">
-                      <img src="{{ $hero->image}}" width="100" height="100" alt="Image">
+                      <div class="d-flex justify-content-center gap-2">
+                        <a class="btn btn-primary btn-sm btn-icon" href="{{ route('edit.hero.section', $hero->id) }}"><i class="ri-edit-line"></i></a>
+                        <a class="btn btn-danger btn-sm btn-icon" href="{{ route('delete.hero.section', $hero->id) }}"><i class="ri-delete-bin-line"></i></a>
+                      </div>
                     </td>
                   </tr>
                 @endforeach

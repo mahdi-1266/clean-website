@@ -4,41 +4,26 @@
 <section class="banner-main splide" aria-label="Cleanysphere Banner Slider">
   <div class="splide__track">
     <ul class="splide__list">
+
       <!-- Slide 1 -->
-      <li class="splide__slide slide-1">
-        <div class="container">
-          <div class="banner-content text-center text-white">
-            <h2 class="display-4 fw-bold banner-title">Bring Back the Sparkle to Your Space</h2>
-            <p class="py-3">From homes to offices, Cleanysphere delivers spotless results with eco-friendly cleaning you can trust. Enjoy a cleaner, healthier environment every day.</p>
-            <a href="services.html" class="btn primary-btn fw-medium me-2 mb-2">Our Services</a>
+      @php
+        $heros = App\Models\HeroSection::get();
+      @endphp
+
+      @foreach ($heros as $hero)
+        <li class="splide__slide slide-1">
+          {{-- <div class="border border-5 border-warning w-100 h-100 position-absolute">
+            <img src="{{ $hero->image }}" class="hero-img w-100 h-100" alt="">
+          </div> --}}
+          <div class="container">
+            <div class="banner-content text-center text-white">
+              <h2 class="display-4 fw-bold banner-title">{{ $hero->title }}</h2>
+              <p class="py-3">{{ $hero->description }}</p>
+              <a href="{{ $hero->link }}" class="btn primary-btn fw-medium me-2 mb-2">{{ $hero->button }}</a>
+            </div>
           </div>
-        </div>
-      </li>
-
-      
-
-      <!-- Slide 2 -->
-      <li class="splide__slide slide-2">
-        <div class="container">
-          <div class="banner-content text-center text-white">
-            <h2 class="display-4 fw-bold banner-title">We Make Every Corner Shine</h2>
-            <p class="py-3">Whether it’s deep cleaning or regular maintenance, our trained professionals ensure perfection in every detail — because you deserve spotless comfort.</p>
-            <a href="pricing.html" class="btn primary-btn fw-medium me-2 mb-2">View Packages</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Slide 3 -->
-      <li class="splide__slide slide-3">
-        <div class="container">
-          <div class="banner-content text-center text-white">
-            <h2 class="display-4 fw-bold banner-title">Trusted Cleaning Experts You Can Rely On</h2>
-            <p class="py-3">Experience peace of mind with Cleanysphere — safe, efficient, and 100% satisfaction guaranteed. Because a clean space means a happy place.</p>
-            <a href="about.html" class="btn primary-btn fw-medium me-2 mb-2">Why Choose Us</a>
-          </div>
-        </div>
-      </li>
-
+        </li>
+      @endforeach
     </ul>
   </div>
 </section>
@@ -254,7 +239,7 @@
         <h2 class="display-6 fw-bold mb-3 heading-text">
           Our <span class="primary-text"> Recent projects</span>
         </h2>
-        <p class="mx-auto para-text">
+        <p class="mx-auto para-text w-75">
           Explore our professional cleaning services designed to make your home and workplace shine —
           handled by experts who care about every little detail.
         </p>
@@ -262,87 +247,37 @@
 
     <!-- Project Grid -->
     <div class="row g-4">
-      <!-- Project Item -->
-      <div class="col-lg-4 col-md-6">
-        <div class="project-card position-relative overflow-hidden rounded-4 shadow-sm" data-aos="fade-up">
-          <img src="{{ asset('frontend/assets/project_img/01_img.webp') }}" alt="Home Cleaning" class="img-fluid w-100">
-          <div class="project-overlay d-flex flex-column align-items-center justify-content-center text-center">
-            <a href="project-details.html" class="view-btn" aria-label="view"><i class="fa-solid fa-eye"></i></a>
-            <i class="fa-solid fa-house-chimney-window fa-2x mb-2 primary-text"></i>
-            <h3 class="fw-bold mb-1 fs-5"> <a href="project-details.html">Home Cleaning</a></h3>
-            <p class="small mb-0">Deep cleaning for a cozy, spotless home.</p>
-          </div>
-        </div>
-      </div>
 
       <!-- Project Item -->
-      <div class="col-lg-4 col-md-6">
-        <div class="project-card position-relative overflow-hidden rounded-4 shadow-sm" data-aos="fade-up">
-          <img src="{{ asset('frontend/assets/project_img/02_img.webp') }}" alt="Office Cleaning" class="img-fluid">
-          <div class="project-overlay d-flex flex-column align-items-center justify-content-center text-center">
-            <a href="project-details.html" class="view-btn" aria-label="view"><i class="fa-solid fa-eye"></i></a>
-            <i class="fa-solid fa-building fa-2x mb-2 primary-text"></i>
-            <h3 class="fw-bold mb-1 fs-5"> <a href="project-details.html">Office Cleaning</a></h3>
-            <p class="small mb-0">Productivity begins with a clean workspace.</p>
-          </div>
-        </div>
-      </div>
+      @php
+        $projects = App\Models\Projects::get();
+      @endphp
 
-      <!-- Project Item -->
-      <div class="col-lg-4 col-md-6 col-6">
-        <div class="project-card position-relative overflow-hidden rounded-4 shadow-sm" data-aos="fade-up">
-          <img src="{{ asset('frontend/assets/project_img/03_img.webp') }}" alt="Carpet Cleaning" class="img-fluid">
-          <div class="project-overlay d-flex flex-column align-items-center justify-content-center text-center">
-            <a href="project-details.html" class=" view-btn" aria-label="view"><i class="fa-solid fa-eye"></i></a>
-            <i class="fa-solid fa-soap fa-2x mb-2 primary-text"></i>
-            <h3 class="fw-bold mb-1 fs-5"><a href="project-details.html">Carpet Cleaning</a></h3>
-            <p class="small mb-0">Restoring freshness and texture in every fiber.</p>
-          </div>
-        </div>
-      </div>
+      @foreach ($projects as $project)
+        <div class="col-lg-4 col-md-6 col-6">
+          <div class="project-card position-relative overflow-hidden rounded-4 shadow-sm">
+            <img src="{{ asset($project->image) }}" alt="Home Cleaning" class="img-fluid w-100">
 
-      <!-- Project Item -->
-      <div class="col-lg-4 col-md-6">
-        <div class="project-card position-relative overflow-hidden rounded-4 shadow-sm" data-aos="fade-up">
-          <img src="{{ asset('frontend/assets/project_img/04_img.webp') }}" alt="Carpet Cleaning" class="img-fluid">
-          <div class="project-overlay d-flex flex-column align-items-center justify-content-center text-center">
-            <a href="project-details.html" class=" view-btn" aria-label="view"><i class="fa-solid fa-eye"></i></a>
-            <i class="fa-solid fa-truck-moving fa-2x mb-2 primary-text"></i>
-            <h3 class="fw-bold mb-1 fs-5"><a href="project-details.html">Move-In / Move-Out</a></h3>
-            <p class="small mb-0">Cleaning that welcomes your next chapter.</p>
-          </div>
-        </div>
-      </div>
+            <div class="project-overlay d-flex flex-column align-items-center justify-content-center text-center">
+              <a href="project-details.html" class=" view-btn" aria-label="view">
+                <i class="fa-solid fa-eye"></i>
+              </a>
 
-      <!-- Project Item -->
-      <div class="col-lg-4 col-md-6">
-        <div class="project-card position-relative overflow-hidden rounded-4 shadow-sm" data-aos="fade-up">
-          <img src="{{ asset('frontend/assets/project_img/05_img.webp') }}" alt="Carpet Cleaning" class="img-fluid rounded-4">
-          <div class="project-overlay d-flex flex-column align-items-center justify-content-center text-center">
-            <a href="assets/project_img/05_img.webp" class="view-btn" aria-label="view"><i class="fa-solid fa-eye"></i></a>
-              <i class="fa-solid fa-spray-can-sparkles fa-2x mb-2 primary-text"></i>
-            <h3 class="fw-bold mb-1 fs-5">Sanitization</h3>
-            <p class="small mb-0">Disinfection for safety & hygiene everywhere.</p>
-          </div>
-        </div>
-      </div>
+              <div class="project-img-container">
+                <img src="{{ asset($project->icon) }}" alt="" class="w-75 h-75">
+              </div>
 
-      <!-- Project Item -->
-      <div class="col-lg-4 col-md-6">
-        <div class="project-card position-relative overflow-hidden rounded-4 shadow-sm" data-aos="fade-up">
-          <img src="{{ asset('frontend/assets/project_img/06_img.webp') }}" alt="Carpet Cleaning" class="img-fluid rounded-4">
-          <div class="project-overlay d-flex flex-column align-items-center justify-content-center text-center">
-            <a href="project-details.html" class=" view-btn" aria-label="view"><i class="fa-solid fa-eye"></i></a>
-            <i class="fa-solid fa-wand-magic-sparkles fa-2x mb-2 primary-text"></i>
-            <h3 class="fw-bold mb-1 fs-5"><a href="project-details.html">Window Cleaning</a></h3>
-            <p class="small mb-0">Crystal clear views, every time.</p>
+              <h3 class="fw-bold mb-1 fs-5">{{ $project->title }}</h3>
+
+              <p class="small mb-0">{{ $project->description }}</p>
+            </div>
           </div>
         </div>
-      </div>
+      @endforeach
     </div>
 
     <div class="text-center mt-4 mt-lg-5 " data-aos="fade-up">
-      <a href="projects.html" class="btn-view-services">
+      <a href="{{ route('all.projects') }}" class="btn-view-services">
         View All Projects
         <i class="fa-solid fa-arrow-right ms-2"></i>
         </a>
@@ -351,18 +286,22 @@
 </section>
 <!-- Recent Projects Section End -->
 
+
 <!-- Team Section Start -->
 <section class="team-section py-5">
   <div class="container">
+
       <!-- Section Title -->
       <div class="text-center mb-3 mb-lg-5 position-relative z-2" data-aos="fade-up">
+
         <span class="sub-title text-uppercase fw-semibold primary-text fs-6">
           <i class="fa-solid fa-users me-2 primary-text cleaning-icon"></i>Our Team
         </span>
         <h2 class="display-6 fw-bold mb-3 heading-text">
-              Meet Our <span class="primary-text"> Cleaning Experts</span>
+          Meet Our <span class="primary-text"> Cleaning Experts</span>
         </h2>
-        <p class="mx-auto para-text">
+
+        <p class="mx-auto para-text w-75">
           Our experienced cleaning experts go beyond the surface — creating spotless, hygienic, and refreshing spaces that make every corner of your property shine.
         </p>
       </div>
@@ -370,72 +309,31 @@
     <div class="row g-4" data-aos="fade-up">
 
       <!-- Team Member -->
-      <div class="col-lg-3 col-md-6">
-        <div class="team-card position-relative overflow-hidden rounded-4 shadow-sm">
-          <img src="{{ asset('frontend/assets/team-img/team_img_1.webp') }}" alt="John Doe" class="img-fluid rounded-4">
-          <div class="team-overlay d-flex flex-column align-items-center justify-content-center text-center">
-            <h3 class="fw-bold mb-1 fs-5">John Doe</h3>
-            <p class="small mb-2">Lead Cleaner</p>
-            <div class="team-socials d-flex gap-2">
-              <a class="social-icon" href="javascript:void(0)" aria-label="facebook"><i class="fab fa-facebook-f icons"></i></a>
-              <a class="social-icon" href="javascript:void(0)" aria-label="instagram"><i class="fab fa-instagram icons"></i></a>
-              <a class="social-icon" href="javascript:void(0)" aria-label="twitter"><i class="fa-brands fa-x-twitter icons"></i></a>
-              <a class="social-icon" href="javascript:void(0)" aria-label="linkedin"><i class="fab fa-linkedin-in icons"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
+      @php
+        $teamMemebers = App\Models\OurTeam::get();
+      @endphp
 
-      <!-- Team Member -->
-      <div class="col-lg-3 col-md-6">
-        <div class="team-card position-relative overflow-hidden rounded-4 shadow-sm">
-          <img src="{{ asset('frontend/assets/team-img/team_img_2.webp') }}" alt="Jane Smith" class="img-fluid rounded-4">
-          <div class="team-overlay d-flex flex-column align-items-center justify-content-center text-center">
-            <h3 class="fw-bold mb-1 fs-5">Jane Smith</h3>
-            <p class="small mb-2">Office Cleaning Expert</p>
-            <div class="team-socials d-flex gap-2">
-              <a class="social-icon" href="javascript:void(0)" aria-label="facebook"><i class="fab fa-facebook-f icons"></i></a>
-              <a class="social-icon" href="javascript:void(0)" aria-label="instagram"><i class="fab fa-instagram icons"></i></a>
-              <a class="social-icon" href="javascript:void(0)" aria-label="twitter"><i class="fa-brands fa-x-twitter icons"></i></a>
-              <a class="social-icon" href="javascript:void(0)" aria-label="linkedin"><i class="fab fa-linkedin-in icons"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
+      @foreach ($teamMemebers as $teamMemeber)
+        <div class="col-lg-3 col-md-6">
+          <div class="team-card position-relative overflow-hidden rounded-4 shadow-sm">
 
-      <!-- Team Member -->
-      <div class="col-lg-3 col-md-6">
-        <div class="team-card position-relative overflow-hidden rounded-4 shadow-sm">
-          <img src="{{ asset('frontend/assets/team-img/team_img_3.webp') }}" alt="Mike Lee" class="img-fluid rounded-4">
-          <div class="team-overlay d-flex flex-column align-items-center justify-content-center text-center">
-            <h3 class="fw-bold mb-1 fs-5">Mike Lee</h3>
-            <p class="small mb-2">Sanitization Specialist</p>
-            <div class="team-socials d-flex gap-2">
-              <a class="social-icon" href="javascript:void(0)" aria-label="facebook"><i class="fab fa-facebook-f icons"></i></a>
-              <a class="social-icon" href="javascript:void(0)" aria-label="instagram"><i class="fab fa-instagram icons"></i></a>
-              <a class="social-icon" href="javascript:void(0)" aria-label="twitter"><i class="fa-brands fa-x-twitter icons"></i></a>
-              <a class="social-icon" href="javascript:void(0)" aria-label="linkedin"><i class="fab fa-linkedin-in icons"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
+            <img src="{{ asset($teamMemeber->image) }}" alt="{{ $teamMemeber->name }}" class="img-fluid rounded-4">
 
-      <!-- Team Member -->
-      <div class="col-lg-3 col-md-6">
-        <div class="team-card position-relative overflow-hidden rounded-4 shadow-sm">
-          <img src="{{ asset('frontend/assets/team-img/team_img_4.webp') }}" alt="Sara White" class="img-fluid rounded-4">
-          <div class="team-overlay d-flex flex-column align-items-center justify-content-center text-center">
-            <h3 class="fw-bold mb-1 fs-5">Sara White</h3>
-            <p class="small mb-2">Window & Carpet Cleaning</p>
-            <div class="team-socials d-flex gap-2">
-              <a class="social-icon" href="javascript:void(0)" aria-label="facebook"><i class="fab fa-facebook-f icons"></i></a>
-              <a class="social-icon" href="javascript:void(0)" aria-label="instagram"><i class="fab fa-instagram icons"></i></a>
-              <a class="social-icon" href="javascript:void(0)" aria-label="twitter"><i class="fa-brands fa-x-twitter icons"></i></a>
-              <a class="social-icon" href="javascript:void(0)" aria-label="linkedin"><i class="fab fa-linkedin-in icons"></i></a>
+            <div class="team-overlay d-flex flex-column align-items-center justify-content-center text-center">
+              <h3 class="fw-bold mb-1 fs-5">{{ $teamMemeber->name }}</h3>
+              <p class="small mb-2">{{ $teamMemeber->role }}</p>
+              <div class="team-socials d-flex gap-2">
+                <a class="social-icon" href="{{ $teamMemeber->facebook_link }}" aria-label="facebook"><i class="fab fa-facebook-f icons"></i></a>
+                <a class="social-icon" href="{{ $teamMemeber->instagram_link }}" aria-label="instagram"><i class="fab fa-instagram icons"></i></a>
+                <a class="social-icon" href="{{ $teamMemeber->twitter_link }}" aria-label="twitter"><i class="fa-brands fa-x-twitter icons"></i></a>
+                <a class="social-icon" href="{{ $teamMemeber->linkedin_link }}" aria-label="linkedin"><i class="fab fa-linkedin-in icons"></i></a>
+              </div>
             </div>
+
           </div>
         </div>
-      </div>
+      @endforeach
+
     </div>
   </div>
 </section>
