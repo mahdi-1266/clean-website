@@ -10,6 +10,7 @@ use App\Models\Portfolio;
 use App\Models\HeroSection;
 use App\Models\Projects;
 use App\Models\OurTeam;
+use App\Models\Story;
 use Intervention\Image\Colors\Rgb\Channels\Red;
 use Pest\Plugin\Manager;
 
@@ -196,6 +197,89 @@ class BackendController extends Controller
     }
 
     return redirect()->route('all.about');
+  }
+
+  // All Story Section
+  public function AllStory(){
+    $story = Story::get()->first();
+    return view('admin.backend.story.index', compact('story'));
+  }
+  
+  public function AddStory(){
+    return view('admin.backend.story.add');
+  }
+
+  public function StoreStory(Request $request){
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'desc'  => 'required|string',
+        'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+    ]);
+
+    if($request->hasFile('image')) {
+        $image = $request->file('image');
+        $manager = new ImageManager(new Driver());
+        $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+        $img = $manager->read($image);
+        $img->resize(610, 400)->save(public_path('upload/backend/story/'.$name_gen));
+        $save_url = 'upload/backend/story/'.$name_gen;
+
+        Story::create([
+            'title' => $request->title,
+            'desc'  => $request->desc,
+            'image' => $save_url,
+        ]);
+    } else {
+        Story::create([
+            'title' => $request->title,
+            'desc'  => $request->desc,
+        ]);
+    }
+
+    return redirect()->route('all.story');
+  }
+
+  public function EditStory($id){
+    $story = Story::find($id);
+    return view('admin.backend.story.edit', compact('story'));
+  }
+
+  public function UpdateStory(Request $request){
+     $request->validate([
+        'title' => 'required|string|max:255',
+        'desc'  => 'required|string',
+        'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+    ]);
+
+    $story_id = $request->id;
+    $story = Story::findOrFail($story_id);
+
+    if ($request->hasFile('image')) {
+
+        if ($story->image && file_exists(public_path($story->image))) {
+            unlink(public_path($story->image));
+        }
+
+        $image = $request->file('image');
+        $manager = new ImageManager(new Driver());
+        $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+        $img = $manager->read($image);
+        $img->resize(610, 400)->save(public_path('upload/backend/story/'.$name_gen));
+        $save_url = 'upload/backend/story/'.$name_gen;
+
+        $story->update([
+            'title' => $request->title,
+            'desc'  => $request->desc,
+            'image' => $save_url,
+        ]);
+    } else {
+        $story->update([
+            'title' => $request->title,
+            'desc'  => $request->desc,
+        ]);
+    }
+
+    return redirect()->route('all.story');
   }
 
     public function AllPortfolio(){

@@ -58,6 +58,15 @@ Route::controller(BackendController::class)->group(function () {
   Route::post('/update/about', 'UpdateAbout')->name('update.about');
 });
 
+// Story Section
+Route::controller(BackendController::class)->group(function () {
+  Route::get('/all/story', 'AllStory')->name('all.story');
+  Route::get('/add/story', 'AddStory')->name('add.story');
+  Route::post('/store/story', 'StoreStory')->name('store.story');
+  Route::get('/edit/story/{id}', 'EditStory')->name('edit.story');
+  Route::post('/update/story', 'UpdateStory')->name('update.story');
+});
+
 Route::controller(BackendController::class)->group(function (){
   Route::get('/all/portfolio', 'AllPortfolio')->name('all.portfolio');
   Route::get('/add/portfolio', 'AddPortfolio')->name('add.portfolio');

@@ -10,7 +10,7 @@
         <nav aria-label="breadcrumb" class="mb-2">
           <ol class="breadcrumb justify-content-center banner-breadcrumb">
             <li class="breadcrumb-item">
-              <a href="index-2.html">Home</a>
+              <a href="/">Home</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">
               About
@@ -41,10 +41,15 @@
 <section class="alt-color py-5">
   <div class="container">
     <div class="row align-items-center g-3">
+
+      @php
+        $story = App\Models\Story::get()->first();
+      @endphp
+
      <!-- LEFT IMAGE -->
       <div class="col-lg-6" data-aos="fade-up">
         <div class="image-floating-card card-color rounded-5 p-3">
-          <img src="{{ asset('frontend/assets/banner_img/bg-1.webp') }}" alt="Modern Cleaning Service" class="img-fluid rounded-4">
+          <img src="{{ asset($story->image) }}" alt="Modern Cleaning Service" class="img-fluid rounded-4">
         </div>
       </div>
 
@@ -56,18 +61,12 @@
             <i class="fa-solid fa-broom me-2 primary-text cleaning-icon"></i>Cleanysphere Story
         </span>
         <h2 class="display-6 fw-bold mb-3 heading-text">
-            Creating Healthier Spaces<span class="primary-text">Every Day</span>
+            {{ $story->title }}
         </h2>
         <p class="para-text">
-            At <strong>Cleanysphere</strong>, we believe a clean environment inspires better living. From homes to offices, we deliver professional cleaning services using eco-friendly products and expert techniques — ensuring your spaces shine with care and precision.
+            {{ $story->desc }}
         </p>
       </div>
-
-        <p class="intro-text para-text">
-          Cleanysphere was built with one clear purpose — to elevate everyday
-          environments through professional, reliable, and detail-driven
-          cleaning services.
-        </p>
 
         <!-- Trust Points -->
         <div class="intro-points mt-3">

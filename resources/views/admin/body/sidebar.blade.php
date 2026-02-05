@@ -51,6 +51,13 @@
       </li>
 
       <li class="treeview">
+        <a href="{{ route('all.story') }}">
+          <i class="ri-home-line"></i>
+          <span class="menu-text">Story</span>
+        </a>
+      </li>
+
+      <li class="treeview">
         <a href="#!">
           <i class="ri-home-line"></i>
           <span class="menu-text">Portfolio</span>
