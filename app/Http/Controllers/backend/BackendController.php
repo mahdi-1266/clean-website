@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
+use App\Models\About;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
@@ -9,7 +11,11 @@ use App\Models\Portfolio;
 use App\Models\HeroSection;
 use App\Models\Projects;
 use App\Models\OurTeam;
+<<<<<<< HEAD
 use App\Models\Testimonial;
+=======
+use App\Models\Story;
+>>>>>>> ad629a269b66185543b561aa2a23ba62135bf955
 use Intervention\Image\Colors\Rgb\Channels\Red;
 use Pest\Plugin\Manager;
 
@@ -115,22 +121,172 @@ class BackendController extends Controller
     }
   }
 
-
-  public function DeleteHeroSection($id){
-    $heroId = HeroSection::findOrFail($id);
-
-    if($heroId->image && file_exists(public_path($heroId->image))){
-      unlink(public_path($heroId->image));
-    }
-
-    $heroId->delete();
-    return redirect()->route('hero.section');
+  // All About Section
+  public function AllAbout(){
+    $about = About::get()->first();
+    return view('admin.backend.about.index', compact('about'));
   }
 
-  /* ------- Hero Section End ------- */
+  public function AddAbout(){
+    return view('admin.backend.about.add');
+  }
 
+  public function StoreAbout(Request $request){
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'desc'  => 'required|string',
+        'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+    ]);
 
-  /* ------- Portfolio Section Start ------- */
+    if($request->hasFile('image')) {
+        $image = $request->file('image');
+        $manager = new ImageManager(new Driver());
+        $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+        $img = $manager->read($image);
+        $img->resize(250, 250)->save(public_path('upload/backend/about/'.$name_gen));
+        $save_url = 'upload/backend/about/'.$name_gen;
+
+        About::create([
+            'title' => $request->title,
+            'desc'  => $request->desc,
+            'image' => $save_url,
+        ]);
+    } else {
+        About::create([
+            'title' => $request->title,
+            'desc'  => $request->desc,
+        ]);
+    }
+
+    return redirect()->route('all.about');
+  }
+
+  public function EditAbout($id){
+    $about = About::find($id);
+    return view('admin.backend.about.edit',compact('about'));
+  }
+
+  public function UpdateAbout(Request $request){
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'desc'  => 'required|string',
+        'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+    ]);
+
+    $about_id = $request->id;
+    $about = About::findOrFail($about_id);
+
+    if ($request->hasFile('image')) {
+
+        if ($about->image && file_exists(public_path($about->image))) {
+            unlink(public_path($about->image));
+        }
+
+        $image = $request->file('image');
+        $manager = new ImageManager(new Driver());
+        $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+        $img = $manager->read($image);
+        $img->resize(500, 400)->save(public_path('upload/backend/about/'.$name_gen));
+        $save_url = 'upload/backend/about/'.$name_gen;
+
+        $about->update([
+            'title' => $request->title,
+            'desc'  => $request->desc,
+            'image' => $save_url,
+        ]);
+    } else {
+        $about->update([
+            'title' => $request->title,
+            'desc'  => $request->desc,
+        ]);
+    }
+
+    return redirect()->route('all.about');
+  }
+
+  // All Story Section
+  public function AllStory(){
+    $story = Story::get()->first();
+    return view('admin.backend.story.index', compact('story'));
+  }
+  
+  public function AddStory(){
+    return view('admin.backend.story.add');
+  }
+
+  public function StoreStory(Request $request){
+    $request->validate([
+        'title' => 'required|string|max:255',
+        'desc'  => 'required|string',
+        'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+    ]);
+
+    if($request->hasFile('image')) {
+        $image = $request->file('image');
+        $manager = new ImageManager(new Driver());
+        $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+        $img = $manager->read($image);
+        $img->resize(610, 400)->save(public_path('upload/backend/story/'.$name_gen));
+        $save_url = 'upload/backend/story/'.$name_gen;
+
+        Story::create([
+            'title' => $request->title,
+            'desc'  => $request->desc,
+            'image' => $save_url,
+        ]);
+    } else {
+        Story::create([
+            'title' => $request->title,
+            'desc'  => $request->desc,
+        ]);
+    }
+
+    return redirect()->route('all.story');
+  }
+
+  public function EditStory($id){
+    $story = Story::find($id);
+    return view('admin.backend.story.edit', compact('story'));
+  }
+
+  public function UpdateStory(Request $request){
+     $request->validate([
+        'title' => 'required|string|max:255',
+        'desc'  => 'required|string',
+        'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+    ]);
+
+    $story_id = $request->id;
+    $story = Story::findOrFail($story_id);
+
+    if ($request->hasFile('image')) {
+
+        if ($story->image && file_exists(public_path($story->image))) {
+            unlink(public_path($story->image));
+        }
+
+        $image = $request->file('image');
+        $manager = new ImageManager(new Driver());
+        $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+        $img = $manager->read($image);
+        $img->resize(610, 400)->save(public_path('upload/backend/story/'.$name_gen));
+        $save_url = 'upload/backend/story/'.$name_gen;
+
+        $story->update([
+            'title' => $request->title,
+            'desc'  => $request->desc,
+            'image' => $save_url,
+        ]);
+    } else {
+        $story->update([
+            'title' => $request->title,
+            'desc'  => $request->desc,
+        ]);
+    }
+
+    return redirect()->route('all.story');
+  }
+
     public function AllPortfolio(){
         $portfolio = Portfolio::all();
         return view('admin.backend.portfolio.portfolio', compact('portfolio'));
@@ -490,10 +646,9 @@ class BackendController extends Controller
       return redirect()->route('our-team')->with('success', 'The team member updated successfully.');
     }
   }
-
-
   /* ------- Our Team End ------- */
 
+<<<<<<< HEAD
 
   /* ------- Testimonial Start ------- */
   public function Testimonial(){
@@ -604,4 +759,36 @@ class BackendController extends Controller
     }
   }
   /* ------- Testimonial End ------- */
+=======
+  // Admin Contact
+  public function AllContact(){
+    $contact = Contact::get();
+    return view('admin.backend.contact.index',compact('contact'));
+  }
+
+  public function StoreContact(Request $request){
+    // $request->validate([
+    //     'name' => 'required|string|max:50',
+    //     'lname'  => 'required|string|max:50',
+    //     'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+    // ]);
+
+    Contact::create([
+        'name' => $request->name,
+        'lname'  => $request->lname,
+        'email'  => $request->email,
+        'phone'  => $request->phone,
+        'message'  => $request->message,
+    ]);
+
+    return redirect()->back();
+  }
+
+  public function DeleteContact($id){
+     $contact = Contact::findOrFail($id);
+    
+    $contact->delete();
+    return redirect()->route('all.contact');
+  }
+>>>>>>> ad629a269b66185543b561aa2a23ba62135bf955
 }

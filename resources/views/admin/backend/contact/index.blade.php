@@ -3,9 +3,6 @@
 
 <div class="col-sm-12">
     <div class="card mb-4">
-        <div>
-            <a href="{{ route('add.portfolio') }}" class="btn btn-primary mb-2" style="float:right;">Add Patient</a>
-        </div>
         <div class="card-body">
             
             <!-- Table start -->
@@ -15,25 +12,26 @@
                 <thead>
                     <tr>
                         <th>SID</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>image</th>
+                        <th>Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Message</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                     @foreach($portfolio as $key=> $item)
+                     @foreach($contact as $key=> $item)
                         <tr>
                             <td>{{ $key+1 }}</td>
-                            <td>{{ $item->title }}</td>
-                            <td>{{ $item->desc }}</td>
-                            <td>
-                                <img src="{{ asset($item->image) }}" alt="" style="width: 50px; height: 50px;">
-                            </td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->lname }}</td>
+                            <td>{{ $item->email }}</td>
+                            <td>{{ $item->phone }}</td>
+                            <td>{{ $item->message }}</td>
                             <td>
                                 <div class="d-flex gap-2">
-                                <a class="btn btn-primary btn-sm btn-icon" href="{{ route('edit.portfolio', $item->id) }}"><i class="ri-edit-line"></i></a>
-                                <a class="btn btn-danger btn-sm btn-icon" href="{{ route('delete.portfolio', $item->id) }}"><i
+                                <a class="btn btn-danger btn-sm btn-icon" href="{{ route('delete.contact', $item->id) }}"><i
                                     class="ri-delete-bin-line"></i></a>
                                 </div>
                             </td>

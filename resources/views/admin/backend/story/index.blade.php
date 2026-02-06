@@ -3,9 +3,11 @@
 
 <div class="col-sm-12">
     <div class="card mb-4">
-        <div>
-            <a href="{{ route('add.portfolio') }}" class="btn btn-primary mb-2" style="float:right;">Add Patient</a>
-        </div>
+        @if (!$story)
+            <div>
+                <a href="{{ route('add.story') }}" class="btn btn-primary mb-2" style="float:right;">Add Story</a>
+            </div>            
+        @endif
         <div class="card-body">
             
             <!-- Table start -->
@@ -14,7 +16,6 @@
                 <table class="table m-0">
                 <thead>
                     <tr>
-                        <th>SID</th>
                         <th>Title</th>
                         <th>Description</th>
                         <th>image</th>
@@ -22,23 +23,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                     @foreach($portfolio as $key=> $item)
+                    @if (!$story)
                         <tr>
-                            <td>{{ $key+1 }}</td>
-                            <td>{{ $item->title }}</td>
-                            <td>{{ $item->desc }}</td>
+                            <td></td>
+                            <td></td>
+                            
+                        </tr>
+                    @else
+                        <tr>
+                            <td>{{ $story->title }}</td>
+                            <td>{{ $story->desc }}</td>
                             <td>
-                                <img src="{{ asset($item->image) }}" alt="" style="width: 50px; height: 50px;">
+                                <img src="{{ asset($story->image) }}" alt="" style="width: 50px; height: 50px;">
                             </td>
                             <td>
                                 <div class="d-flex gap-2">
-                                <a class="btn btn-primary btn-sm btn-icon" href="{{ route('edit.portfolio', $item->id) }}"><i class="ri-edit-line"></i></a>
-                                <a class="btn btn-danger btn-sm btn-icon" href="{{ route('delete.portfolio', $item->id) }}"><i
-                                    class="ri-delete-bin-line"></i></a>
+                                <a class="btn btn-primary btn-sm btn-icon" href="{{ route('edit.story', $story->id) }}"><i class="ri-edit-line"></i></a>
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+                    @endif
                 </tbody>
                 </table>
             </div>

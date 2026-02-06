@@ -36,7 +36,9 @@ Route::middleware('auth')->group(function () {
 
 /* ----- Projects Route ----- */
 Route::controller(FrontendController::class)->group(function () {
+  Route::get('/about', 'About')->name('about');
   Route::get('/all/projects', 'projects')->name('all.projects');
+  Route::get('/contact', 'Contact')->name('contact');
 });
 
 Route::controller(BackendController::class)->group(function(){
@@ -46,6 +48,31 @@ Route::controller(BackendController::class)->group(function(){
   Route::get('/edit/hero/section/{id}', 'EditHeroSection')->name('edit.hero.section');
   Route::post('/update/hero/section', 'UpdateHeroSection')->name('update.hero.section');
   Route::get('/delete/hero/section/{id}', 'DeleteHeroSection')->name('delete.hero.section');
+});
+
+// About Section
+Route::controller(BackendController::class)->group(function () {
+  Route::get('/all/about', 'AllAbout')->name('all.about');
+  Route::get('/add/about', 'AddAbout')->name('add.about');
+  Route::post('/store/about', 'StoreAbout')->name('store.about');
+  Route::get('/edit/about/{id}', 'EditAbout')->name('edit.about');
+  Route::post('/update/about', 'UpdateAbout')->name('update.about');
+});
+
+// Story Section
+Route::controller(BackendController::class)->group(function () {
+  Route::get('/all/story', 'AllStory')->name('all.story');
+  Route::get('/add/story', 'AddStory')->name('add.story');
+  Route::post('/store/story', 'StoreStory')->name('store.story');
+  Route::get('/edit/story/{id}', 'EditStory')->name('edit.story');
+  Route::post('/update/story', 'UpdateStory')->name('update.story');
+});
+
+// Admin Contact 
+Route::controller(BackendController::class)->group(function () {
+  Route::get('/all/contact', 'AllContact')->name('all.contact');
+  Route::post('/store/contact', 'StoreContact')->name('store.contact');
+  Route::get('/delete/contact/{id}', 'DeleteContact')->name('delete.contact');
 });
 
 Route::controller(BackendController::class)->group(function (){
