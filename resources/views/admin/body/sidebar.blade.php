@@ -79,6 +79,17 @@
         </ul>
       </li>
 
+      <li class="treeview">
+        <a href="#!">
+          <i class="ri-user-line"></i>
+          <span class="menu-text">Testimonials</span>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <a href="{{ route('testimonial') }}">Testimonial</a>
+          </li>
+        </ul>
+      </li>
     </ul>
   </div>
   <!-- Sidebar menu ends -->

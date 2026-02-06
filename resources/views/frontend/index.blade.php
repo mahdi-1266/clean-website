@@ -498,63 +498,31 @@
     <div class="splide testimonial-slider">
       <div class="splide__track">
         <ul class="splide__list">
+          @php
+            $testimonials = App\Models\Testimonial::get();
+          @endphp
 
           <!-- Testimonial Item -->
-          <li class="splide__slide">
-            <div class="testimonial-card p-4 rounded-4 shadow-sm text-center">
-              <img src="{{ asset('frontend/assets/testimonial_img/testi_img_1.webp') }}" alt="Client 1" class="testimonial-img mb-3 rounded-circle">
-              <p class="para-text mb-3">
-                "Cleanysphere did an amazing job cleaning my home! The staff were professional, friendly, and thorough. Highly recommend!"
-              </p>
-              <h3 class="fw-bold mb-0 heading-text fs-6">John Doe</h3>
-              <small class="para-text">Homeowner</small>
-              <div class="mt-2 text-warning">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-              </div>
-            </div>
-          </li>
+          @foreach ($testimonials as $testimonial)
+            <li class="splide__slide">
+              <div class="testimonial-card p-4 rounded-4 shadow-sm text-center">
+                <img src="{{ asset($testimonial->image) }}" alt="Client 1" class="testimonial-img mb-3 rounded-circle">
+                <p class="para-text message mb-3">{{ $testimonial->message }}</p>
+                <h3 class="fw-bold mb-0 heading-text fs-6">{{ $testimonial->name }}</h3>
+                <small class="para-text">{{ $testimonial->role }}</small>
 
-          <!-- Testimonial Item -->
-          <li class="splide__slide">
-            <div class="testimonial-card p-4 rounded-4 shadow-sm text-center">
-              <img src="{{ asset('frontend/assets/testimonial_img/testi_img_2.webp') }}" alt="Client 2" class="testimonial-img mb-3 rounded-circle">
-              <p class="para-text mb-3">
-                "Their office cleaning service is top-notch! Our workspace is spotless and feels much more productive."
-              </p>
-              <h3 class="fw-bold mb-0 heading-text fs-6">Jane Smith</h3>
-              <small class="para-text">Office Manager</small>
-              <div class="mt-2 text-warning">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
+                <div class="mt-2 text-warning stars">
+                  @for ($i = 1; $i < 5; $i++)
+                    @if($i <= $testimonial->rating)
+                      <i class="fas fa-star text-warning"></i>
+                    @else
+                      <i class="fas fa-star text-muted"></i>
+                    @endif
+                  @endfor
+                </div>
               </div>
-            </div>
-          </li>
-
-          <!-- Testimonial Item -->
-          <li class="splide__slide">
-            <div class="testimonial-card p-4 rounded-4 shadow-sm text-center">
-              <img src="{{ asset('frontend/assets/testimonial_img/testi_img_3.webp') }}" alt="Client 3" class="testimonial-img mb-3 rounded-circle">
-              <p class="para-text mb-3">
-                "The team is amazing! They sanitized our entire office and left everything sparkling clean. Highly professional!"
-              </p>
-              <h3 class="fw-bold mb-0 heading-text fs-6">Mike Lee</h3>
-              <small class="para-text">Business Owner</small>
-              <div class="mt-2 text-warning">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star-half-alt"></i>
-              </div>
-            </div>
-          </li>
+            </li>
+          @endforeach
         </ul>
       </div>
     </div>

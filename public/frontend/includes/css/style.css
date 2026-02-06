@@ -114,6 +114,10 @@ a:hover {
 
 .para-text {
   color: var(--para-text);
+
+}
+.para-text.message{
+  height: 60px;
 }
 
 .white-text {

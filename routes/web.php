@@ -74,3 +74,12 @@ Route::controller(BackendController::class)->group(function(){
   Route::post('/update/our-team/', 'UpdateOurTeam')->name('update.our-team');
   Route::get('/delete/our-team/{id}', 'DeleteOurTeam')->name('delete.our-team');
 });
+
+Route::controller(BackendController::class)->group(function(){
+  Route::get('/testimonial', 'Testimonial')->name('testimonial');
+  Route::get('/create/testimonial', 'CreateTestimonial')->name('add.testimonial');
+  Route::post('/store/testimonial', 'StoreTestimonial')->name('store.testimonial');
+  Route::get('/edit/testimonial/{id}', 'EditTestimonial')->name('edit.testimonial');
+  Route::post('/update/testimonial/', 'UpdateTestimonial')->name('update.testimonial');
+  Route::get('/delete/testimonial/{id}', 'DeleteTestimonial')->name('delete.testimonial');
+});

@@ -9,6 +9,7 @@ use App\Models\Portfolio;
 use App\Models\HeroSection;
 use App\Models\Projects;
 use App\Models\OurTeam;
+use App\Models\Testimonial;
 use Intervention\Image\Colors\Rgb\Channels\Red;
 use Pest\Plugin\Manager;
 
@@ -164,7 +165,7 @@ class BackendController extends Controller
             'title' => $request->title,
             'desc'  => $request->desc,
         ]);
-    }
+      }
 
     return redirect()->route('all.portfolio');
 }
@@ -492,4 +493,115 @@ class BackendController extends Controller
 
 
   /* ------- Our Team End ------- */
+
+
+  /* ------- Testimonial Start ------- */
+  public function Testimonial(){
+    return view('admin.testimonial.index');
+  }
+
+  public function CreateTestimonial(){
+    return view('admin.testimonial.create');
+  }
+
+
+  public function DeleteTestimonial($id){
+    $testimonial = Testimonial::findOrFail($id);
+    if($testimonial->image && file_exists(public_path($testimonial->image))){
+      unlink(public_path($testimonial->image));
+    }
+    $testimonial->delete();
+    return redirect()->route('testimonial');
+  }
+
+  public function StoreTestimonial(Request $request){
+    $request->validate([
+      'name' => 'required|string|max:50',
+      'role' => 'required|string|max:50',
+      'message' => 'required|string|max:250',
+      'rating' => 'required|integer|min:1|max:5',
+      'image' => 'required|image|mimes:jpg,jpeg,png,gif,webp|max:2048',
+    ]);
+
+    if($request->hasFile('image')){
+      $image = $request->file('image');
+      $imageName = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+      $imgManager = new ImageManager(new Driver());
+      $img = $imgManager->read($image);
+      $img->resize(100, 100)->save(public_path('upload/testimonial/'.$imageName));
+      $saveUrl = 'upload/testimonial/'.$imageName;
+
+      Testimonial::create([
+        'name' => $request->name,
+        'role' => $request->role,
+        'message' => $request->message,
+        'rating' => $request->rating,
+        'image' => $saveUrl,
+      ]);
+
+      return redirect()->route('testimonial');
+    }
+    else{
+      Testimonial::create([
+        'name' => $request->name,
+        'role' => $request->role,
+        'message' => $request->message,
+        'rating' => $request->rating,
+      ]);
+
+      return redirect()->route('testimonial');
+    }
+  }
+
+  public function EditTestimonial($id){
+    $testimonial = Testimonial::findOrFail($id);
+    return view('admin.testimonial.edit', compact('testimonial'));
+  }
+
+  public function UpdateTestimonial(Request $request){
+    $request->validate([
+      'name' => 'required|string|max:50',
+      'role' => 'required|string|max:50',
+      'message' => 'required|string|max:250',
+      'rating' => 'required|integer|min:1|max:5',
+      'image' => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:2048',
+    ]);
+
+    $testimonialId = $request->id;
+    $testimonial = Testimonial::findOrFail($testimonialId);
+
+    if ($request->hasFile('image')) {
+      if ($testimonial->image && file_exists(public_path($testimonial->image))) {
+        unlink(public_path($testimonial->image));
+      }
+
+      $image = $request->file('image');
+      $imageName = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+      $manager = new ImageManager(new Driver());
+      $img = $manager->read($image);
+      $img->resize(100, 100)->save(public_path('upload/testimonial/'.$imageName));
+      $saveUrl = 'upload/testimonial/'.$imageName;
+
+      $testimonial->update([
+        'name' => $request->name,
+        'role' => $request->role,
+        'message' => $request->message,
+        'rating' => $request->rating,
+        'image' => $saveUrl,
+      ]);
+
+      return redirect()->route('testimonial');
+    }
+    else {
+      $testimonial->update([
+        'name' => $request->name,
+        'role' => $request->role,
+        'message' => $request->message,
+        'rating' => $request->rating,
+      ]);
+
+      return redirect()->route('testimonial');
+    }
+  }
+  /* ------- Testimonial End ------- */
 }
