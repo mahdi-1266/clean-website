@@ -44,10 +44,15 @@
       </li>
 
       <li class="treeview">
-        <a href="{{ route('all.about') }}">
+        <a href="">
           <i class="ri-home-line"></i>
           <span class="menu-text">About</span>
         </a>
+        <ul class="treeview-menu">
+          <li>
+            <a href="{{ route('all.about') }}">About</a>
+          </li>
+        </ul>
       </li>
 
       <li class="treeview">
@@ -94,7 +99,6 @@
       </li>
 
       <li class="treeview">
-<<<<<<< HEAD
         <a href="#!">
           <i class="ri-user-line"></i>
           <span class="menu-text">Testimonials</span>
@@ -105,14 +109,18 @@
           </li>
         </ul>
       </li>
-=======
-        <a href="{{ route('all.contact') }}">
+
+      <li class="treeview">
+        <a href="">
           <i class="ri-home-line"></i>
           <span class="menu-text">Contact</span>
         </a>
+        <ul class="treeview-menu">
+          <li>
+            <a href="{{ route('all.contact') }}">Contact</a>
+          </li>
+        </ul>
       </li>
-
->>>>>>> ad629a269b66185543b561aa2a23ba62135bf955
     </ul>
   </div>
   <!-- Sidebar menu ends -->

@@ -17,7 +17,7 @@
             </div>
             <div class="col-xl-4 col-xxl-4 col-lg-4 mx-auto">
                 <label for="desc" class="form-label">Description: </label>
-                <input type="text" class="form-control" id="desc" name="desc">
+                <textarea type="text" class="form-control" id="desc" name="desc" cols="30" rows="4" placeholder="Enter description"></textarea>
             </div>
             <div class="col-xl-4 col-xxl-4 col-lg-4">
                 <label for="image" class="form-label">Photo: </label>

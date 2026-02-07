@@ -22,12 +22,6 @@
             <input type="text" class="form-control" name="title" id="title" value="{{ $projectId->title }}">
           </div>
 
-          <!-- Email Input -->
-          <div class="mb-3">
-            <label for="button" class="form-label">Icon</label>
-            <input type="file" class="form-control" name="icon" id="icon">
-          </div>
-
           <!-- Password Input -->
           <div class="mb-3">
             <label for="image" class="form-label">Project Image</label>

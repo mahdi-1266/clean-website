@@ -68,7 +68,7 @@ Route::controller(BackendController::class)->group(function () {
   Route::post('/update/story', 'UpdateStory')->name('update.story');
 });
 
-// Admin Contact 
+// Admin Contact
 Route::controller(BackendController::class)->group(function () {
   Route::get('/all/contact', 'AllContact')->name('all.contact');
   Route::post('/store/contact', 'StoreContact')->name('store.contact');

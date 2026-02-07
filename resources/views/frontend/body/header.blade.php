@@ -98,12 +98,8 @@
                     </ul>
                   </li>
 
-                  <!-- Projects Dropdown -->
-                  <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle d-flex align-items-center gap-2"
-                      href="{{ route('all.projects') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Projects
-                      </a>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ route('all.projects') }}">Projects</a>
                   </li>
 
                   <!-- Blogs Dropdown -->

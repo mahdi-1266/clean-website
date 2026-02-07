@@ -30,10 +30,6 @@
                   <i class="fa-solid fa-eye"></i>
                 </a>
 
-                <div class="project-img-container">
-                  <img src="{{ asset($project->icon) }}" alt="" class="w-75 h-75">
-                </div>
-
                 <h3 class="fw-bold mb-1 fs-5">{{ $project->title }}</h3>
 
                 <p class="small mb-0">{{ $project->description }}</p>

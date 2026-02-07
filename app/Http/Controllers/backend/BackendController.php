@@ -11,11 +11,8 @@ use App\Models\Portfolio;
 use App\Models\HeroSection;
 use App\Models\Projects;
 use App\Models\OurTeam;
-<<<<<<< HEAD
 use App\Models\Testimonial;
-=======
 use App\Models\Story;
->>>>>>> ad629a269b66185543b561aa2a23ba62135bf955
 use Intervention\Image\Colors\Rgb\Channels\Red;
 use Pest\Plugin\Manager;
 
@@ -36,7 +33,7 @@ class BackendController extends Controller
     $request->validate([
       'title' => 'required|string|max:50',
       'button' => 'required|string|max:50',
-      'link' => 'required|string|max:100',
+      'link' => 'required|string|max:300',
       'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
       'description' => 'required|string|max:300',
     ]);
@@ -133,9 +130,9 @@ class BackendController extends Controller
 
   public function StoreAbout(Request $request){
     $request->validate([
-        'title' => 'required|string|max:255',
-        'desc'  => 'required|string',
-        'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+      'title' => 'required|string|max:100',
+      'desc'  => 'required|string|max:250',
+      'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
     ]);
 
     if($request->hasFile('image')) {
@@ -147,14 +144,14 @@ class BackendController extends Controller
         $save_url = 'upload/backend/about/'.$name_gen;
 
         About::create([
-            'title' => $request->title,
-            'desc'  => $request->desc,
-            'image' => $save_url,
+          'title' => $request->title,
+          'desc'  => $request->desc,
+          'image' => $save_url,
         ]);
     } else {
         About::create([
-            'title' => $request->title,
-            'desc'  => $request->desc,
+          'title' => $request->title,
+          'desc'  => $request->desc,
         ]);
     }
 
@@ -209,7 +206,7 @@ class BackendController extends Controller
     $story = Story::get()->first();
     return view('admin.backend.story.index', compact('story'));
   }
-  
+
   public function AddStory(){
     return view('admin.backend.story.add');
   }
@@ -398,31 +395,21 @@ class BackendController extends Controller
   public function StoreProject(Request $request){
     $request->validate([
       'title' => 'required|string|max:50',
-      'icon' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
       'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
       'description' => 'required|string|max:200',
     ]);
 
     // Project Image
-    if($request->hasFile('image') && $request->hasFile('icon')){
+    if($request->hasFile('image')){
       $image = $request->file('image');
       $imageName = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
       $manager = new ImageManager(new Driver());
       $img = $manager->read($image);
-      $img->resize(800, 600)->save(public_path('upload/project/image/'.$imageName));
-      $saveUrl = 'upload/project/image/'.$imageName;
-
-      // Icon Image
-      $iconImage = $request->file('icon');
-      $iconImageName = hexdec(uniqid()).'.'.$iconImage->getClientOriginalExtension();
-      $iconManager = new ImageManager(new Driver());
-      $iconImg = $iconManager->read($iconImage);
-      $iconImg->resize(200, 200)->save(public_path('upload/project/image/'.$iconImageName));
-      $iconSaveUrl = 'upload/project/image/'.$iconImageName;
+      $img->resize(800, 600)->save(public_path('upload/project/'.$imageName));
+      $saveUrl = 'upload/project/'.$imageName;
 
       Projects::create([
         'title' => $request->title,
-        'icon' => $iconSaveUrl,
         'image' => $saveUrl,
         'description' => $request->description,
       ]);
@@ -435,7 +422,7 @@ class BackendController extends Controller
         'description' => $request->description,
       ]);
 
-      return redirect()->route('projects')->with('success, The hero section added successfully.');
+      return redirect()->route('admin.projects')->with('success, The hero section added successfully.');
     }
   }
 
@@ -448,46 +435,11 @@ class BackendController extends Controller
     $request->validate([
       'title' => 'required|string|max:50',
       'description' => 'required|string|max:300',
-      'icon' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
       'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
     ]);
 
-    $data = [
-      'title' => $request->title,
-      'description' => $request->description
-    ];
 
     $projectId = Projects::findOrFail($request->id);
-
-    if($request->hasFile('icon')){
-      if($projectId->icon && file_exists(public_path($projectId->icon))){
-        unlink(public_path($projectId->icon));
-      }
-
-      $iconImage = $request->file('icon');
-      $iconImageName = hexdec(uniqid()).'.'.$iconImage->getClientOriginalExtension();
-      $iconManager = new ImageManager(new Driver());
-      $iconImg = $iconManager->read($iconImage);
-      $iconImg->resize(30, 30)->save(public_path('upload/project/icon/'.$iconImageName));
-      $saveIconUrl = 'upload/project/icon/'.$iconImageName;
-
-      $projectId->update([
-        'title' => $request->title,
-        'description' => $request->description,
-        'icon' => $saveIconUrl,
-        // 'image' => $saveImgUrl,
-      ]);
-
-      return redirect()->route('admin.projects')->with('success', 'The project updated successfully');
-    }
-    else{
-      $projectId->update([
-        'title' => $request->title,
-        'description' => $request->description,
-      ]);
-
-      return redirect()->route('admin.projects')->with('success', 'The project updated successfully');
-    }
 
     // Project Image
     if($request->hasFile('image')){
@@ -499,13 +451,12 @@ class BackendController extends Controller
       $imageName = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
       $manager = new ImageManager(new Driver());
       $img = $manager->read($image);
-      $img->resize(400, 450)->save(public_path('upload/project/image/'.$imageName));
-      $saveImgUrl = 'upload/project/image/'.$imageName;
+      $img->resize(400, 450)->save(public_path('upload/project/'.$imageName));
+      $saveImgUrl = 'upload/project/'.$imageName;
 
       $projectId->update([
         'title' => $request->title,
         'description' => $request->description,
-        // 'icon' => $saveIconUrl,
         'image' => $saveImgUrl,
       ]);
       return redirect()->route('admin.projects')->with('success', 'The project updated successfully');
@@ -524,9 +475,6 @@ class BackendController extends Controller
 
     if($projectId->image && file_exists(public_path($projectId->image))){
       unlink(public_path($projectId->image));
-    }
-    if($projectId->icon && file_exists(public_path($projectId->icon))){
-      unlink(public_path($projectId->icon));
     }
 
     $projectId->delete();
@@ -648,7 +596,6 @@ class BackendController extends Controller
   }
   /* ------- Our Team End ------- */
 
-<<<<<<< HEAD
 
   /* ------- Testimonial Start ------- */
   public function Testimonial(){
@@ -759,36 +706,32 @@ class BackendController extends Controller
     }
   }
   /* ------- Testimonial End ------- */
-=======
-  // Admin Contact
+
+
+
+  /* ------- Contact Start ------- */
   public function AllContact(){
-    $contact = Contact::get();
-    return view('admin.backend.contact.index',compact('contact'));
+    return view('frontend.pages.contact.contact');
   }
 
   public function StoreContact(Request $request){
-    // $request->validate([
-    //     'name' => 'required|string|max:50',
-    //     'lname'  => 'required|string|max:50',
-    //     'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-    // ]);
+    $request->validate([
+      'name' => 'required|string|max:50',
+      'lname' => 'required|string|max:50',
+      'email' => 'required|email|max:100',
+      'phone' => 'required|string|max:20',
+      'message' => 'required|string|max:300',
+    ]);
 
     Contact::create([
-        'name' => $request->name,
-        'lname'  => $request->lname,
-        'email'  => $request->email,
-        'phone'  => $request->phone,
-        'message'  => $request->message,
+      'name' => $request->name,
+      'lname' => $request->lname,
+      'email' => $request->email,
+      'phone' => $request->phone,
+      'message' => $request->message,
     ]);
 
     return redirect()->back();
   }
-
-  public function DeleteContact($id){
-     $contact = Contact::findOrFail($id);
-    
-    $contact->delete();
-    return redirect()->route('all.contact');
-  }
->>>>>>> ad629a269b66185543b561aa2a23ba62135bf955
+  /* ------- Contact End ------- */
 }

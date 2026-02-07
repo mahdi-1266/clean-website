@@ -6,10 +6,10 @@
         @if (!$about)
             <div>
                 <a href="{{ route('add.about') }}" class="btn btn-primary mb-2" style="float:right;">Add About</a>
-            </div>            
+            </div>
         @endif
         <div class="card-body">
-            
+
             <!-- Table start -->
             <div class="table-outer">
             <div class="table-responsive">
@@ -30,39 +30,24 @@
                             <td class="text-center">No Data</td>
                         </tr>
                     @else
-                        <tr>
-                            <td>{{ $about->title }}</td>
-                            <td>{{ $about->desc }}</td>
-                            <td>
-                                <img src="{{ asset($about->image) }}" alt="" style="width: 50px; height: 50px;">
-                            </td>
-                            <td>
-                                <div class="d-flex gap-2">
-                                <a class="btn btn-primary btn-sm btn-icon" href="{{ route('edit.about', $about->id) }}"><i class="ri-edit-line"></i></a>
-                                </div>
-                            </td>
-                        </tr>
+                      <tr>
+                        <td>{{ $about->title }}</td>
+                        <td>{{ $about->desc }}</td>
+                        <td>
+                            <img src="{{ asset($about->image) }}" alt="" style="width: 50px; height: 50px;">
+                        </td>
+                        <td>
+                          <div class="d-flex gap-2">
+                            <a class="btn btn-primary btn-sm btn-icon" href="{{ route('edit.about', $about->id) }}"><i class="ri-edit-line"></i></a>
+                          </div>
+                        </td>
+                      </tr>
                     @endif
                 </tbody>
-                </table>
+              </table>
             </div>
-            </div>
+          </div>
             <!-- Table end -->
-
-            <!-- Pagination start -->
-            <div class="mt-3">
-            <ul class="pagination justify-content-start">
-                <li class="page-item"><a href="#" class="page-link">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active">
-                <a class="page-link" href="#" aria-current="page">2</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-            </div>
-            <!-- Pagination end -->
-
         </div>
     </div>
 </div>

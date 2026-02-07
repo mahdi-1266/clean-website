@@ -13,7 +13,6 @@
                   <th class="border">ID</th>
                   <th class="border">Title</th>
                   <th class="border">Description</th>
-                  <th class="border">Icon</th>
                   <th class="border">Photo</th>
                   <th class="border">Action</th>
                 </tr>
@@ -29,7 +28,6 @@
                     <td class="border">{{ $project->id }}</td>
                     <td class="border">{{ $project->title }}</td>
                     <td class="border">{{ $project->description }}</td>
-                    <td class="border"><img src="{{ asset($project->icon) }}" width="40px" height="40px" alt=""></td>
                     <td class="border"><img src="{{ asset($project->image) }}" width="100px" height="50" alt=""></td>
                     <td class="border">
                       <div class="d-flex justify-content-center gap-2">
@@ -46,20 +44,6 @@
 
         <a href="{{ route('add.project') }}" class="btn btn-primary mt-3">Add Project</a>
         <!-- Table end -->
-
-        <!-- Pagination start -->
-        <div class="mt-3">
-          <ul class="pagination justify-content-start">
-            <li class="page-item"><a href="#" class="page-link">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item active">
-              <a class="page-link" href="#" aria-current="page">2</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-          </ul>
-        </div>
-        <!-- Pagination end -->
 
       </div>
     </div>
